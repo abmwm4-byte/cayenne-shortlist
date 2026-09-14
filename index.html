@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://prod.pictures.autoscout24.net https://img.classistatic.de; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Личная подборка Porsche Cayenne V8: сравнение объявлений AutoScout24 и mobile.de по цене, пробегу и унифицированным опциям.">
+  <title>Cayenne V8 · Подборка</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js?v=live-counts-1" defer></script>
+</head>
+<body>
+  <a href="#results" class="skip">К результатам</a>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Cayenne — сбросить фильтры"><span class="brand-mark">C</span><span>CAYENNE<span class="brand-sub">V8 / SHORTLIST</span></span></a>
+    <div class="top-actions"><span class="live-label"><span></span>Личная подборка</span><button type="button" class="button quiet" id="share">Поделиться фильтрами</button></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">PORSCHE CAYENNE · 2023—2024 · БЕЗ ГИБРИДОВ</p><h1>Твой Cayenne.<br><span>Нужная комплектация.</span></h1><p class="intro">Две площадки. Один список опций.<br>Выбери то, что важно тебе, и сравни подходящие объявления.</p></div>
+      <div class="hero-stats" aria-label="Статистика подборки"><div><strong id="total">—</strong><span>по фильтрам</span></div><div><strong id="option-total">—</strong><span>уникальных опций</span></div><div><strong>02</strong><span>площадки</span></div><p id="snapshot">Загрузка снимка объявлений…</p></div>
+    </section>
+    <div class="workspace">
+      <aside class="sidebar">
+        <details class="filter-panel" id="filter-panel" open>
+          <summary class="panel-heading">Фильтры <span id="filter-badge"></span></summary>
+          <div class="filter-inner">
+            <div class="filter-top"><span>Параметры автомобиля</span><button class="text-button" id="reset" type="button">Сбросить всё</button></div>
+            <label class="field">Поиск по объявлению<input id="search" type="search" placeholder="Город, продавец, комплектация…" autocomplete="off"></label>
+            <fieldset><legend>Цена, €</legend><div class="range"><input id="price-min" type="number" min="0" step="1000" aria-label="Цена от" placeholder="От"><span>—</span><input id="price-max" type="number" min="0" step="1000" aria-label="Цена до" placeholder="До"></div></fieldset>
+            <fieldset><legend>Пробег, км</legend><div class="range"><input id="mileage-min" type="number" min="0" step="1000" aria-label="Пробег от" placeholder="От"><span>—</span><input id="mileage-max" type="number" min="0" step="1000" aria-label="Пробег до" placeholder="До"></div></fieldset>
+            <div class="field-pair"><label class="field">Регистрация<select id="year"><option value="">Любой год</option><option value="2023">2023</option><option value="2024">2024</option></select></label><label class="field">Страна<select id="country"><option value="">Все страны</option></select></label></div>
+            <label class="field">Площадка<select id="source"><option value="">Обе площадки</option><option value="mobile.de">mobile.de</option><option value="AutoScout24">AutoScout24</option></select></label>
+            <div class="checks"><label><input type="checkbox" id="hide-accident"><span>Скрыть явно указанные ДТП</span></label><label><input type="checkbox" id="verified-v8"><span>Только 8 цилиндров в карточке</span></label><label><input type="checkbox" id="duplicates"><span>Только возможные дубли</span></label></div>
+            <div class="divider"></div>
+            <div class="section-title"><h2>Комплектация</h2><span id="selected-number">0 выбрано</span></div>
+            <p class="hint">Отсутствие упоминания не означает, что опции нет.</p>
+            <fieldset class="segmented"><legend class="sr-only">Как сочетать выбранные опции</legend><label><input type="radio" name="mode" value="all" checked><span>Все выбранные</span></label><label><input type="radio" name="mode" value="any"><span>Хотя бы одна</span></label></fieldset>
+            <label class="field">Искать подтверждение<select id="evidence"><option value="all">В списках, описании и заголовке</option><option value="structured">Только в списках и характеристиках</option></select></label>
+            <label class="field sr-label">Найти опцию<input id="option-search" type="search" placeholder="Опция: пневма, BOSE, HUD…" autocomplete="off"></label>
+            <div id="option-list" class="option-list"></div>
+            <details class="baseline-panel" id="baseline-panel"><summary>Базовый список <span id="baseline-count">0</span></summary><p>Только опции, указанные во всех объявлениях полной подборки. Не заводская серийная комплектация.</p><div id="baseline-list"></div></details>
+          </div>
+        </details>
+        <p class="sidebar-note">Это снимок объявлений, не проверка автомобилей. Актуальность цены, состояние и комплектацию уточняй у продавца.</p>
+      </aside>
+      <section class="results" id="results" aria-label="Результаты поиска">
+        <div class="quick-section"><div class="small-heading">ЧАСТО ИЩУТ</div><div class="quick-options" id="quick-options"></div></div>
+        <div class="results-bar"><div><h2><span id="result-count">Загрузка…</span></h2><p id="result-note">Собираем удобное представление</p></div><div class="result-actions"><label class="sr-only" for="sort">Сортировка</label><select id="sort"><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option><option value="mileage-asc">Меньше пробег</option><option value="options-desc">Больше указанных опций</option><option value="newest">Новее регистрация</option></select><button class="button small" id="export" type="button">CSV</button></div></div>
+        <div id="selected-chips" class="selected-chips" aria-label="Выбранные опции"></div>
+        <p id="filter-error" class="error-box" hidden></p>
+        <div class="legend-line"><span class="legend-dot"></span>Опции объединены по смыслу. Нажми на карточку, чтобы увидеть оригинальные подтверждения.</div>
+        <div id="loading" class="loading" role="status">Загружаем объявления и каталог опций…</div>
+        <div id="cards" class="cards"></div>
+        <div id="empty" class="empty" hidden><span class="empty-symbol">∅</span><h3>Пока без совпадений</h3><p>Попробуй убрать одну из опций, расширить диапазон или выбрать «Хотя бы одна».</p><button class="button primary" id="empty-reset" type="button">Сбросить фильтры</button></div>
+        <div class="load-more"><button id="load-more" class="button" type="button" hidden>Показать ещё</button><span id="shown-count"></span></div>
+      </section>
+    </div>
+    <footer><strong>CAYENNE V8 / SHORTLIST</strong><p>AutoScout24 + mobile.de · Оригинальные данные продавцов · Возможные дубли не объединяются автоматически</p><details><summary>Как устроена уникализация опций</summary><p id="normalization-note"></p><p>Переводы и синонимы объединены, разные системы сохранены отдельно. Например, BOSE ≠ Burmester, PASM ≠ пневмоподвеска, панорамная крыша ≠ люк. Более конкретная опция может подтверждать общую: HD-Matrix подтверждает наличие LED-фар.</p><p>Упоминания в тексте не равны проверенной комплектации. Отрицательные формулировки не считаются наличием. Стандартный список продавца тоже может содержать ошибки. Без VIN совпадение регистрации, пробега и мощности отмечается только как возможный дубль.</p></details></footer>
+  </main>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-top"><span>ПОДРОБНОСТИ ОБЪЯВЛЕНИЯ</span><button type="button" id="close-dialog" class="close-button" aria-label="Закрыть">×</button></div><div id="detail-content"></div></dialog>
+  <dialog id="option-dialog" aria-labelledby="option-title"><div class="dialog-top"><span>ОПИСАНИЕ ОПЦИИ</span><button type="button" id="close-option-dialog" class="close-button" aria-label="Закрыть описание опции">×</button></div><div id="option-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <div id="status" class="sr-only" aria-live="polite"></div>
+</body>
+</html>
