@@ -1,0 +1,35 @@
+name: Check AutoScout24 access
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Check search and one public listing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, re, urllib.request, urllib.error
+          from urllib.parse import urljoin
+          url = 'https://www.autoscout24.com/lst/porsche/cayenne?fregfrom=2023&fregto=2024&cy=D%2CA%2CB%2CE%2CF%2CI%2CL%2CNL&damaged_listing=exclude&desc=0&powerfrom=348&powerto=353&powertype=hp&sort=price&ustate=N%2CU&atype=C'
+          def fetch(target):
+              request = urllib.request.Request(target, headers={'User-Agent': 'Mozilla/5.0', 'Accept-Language': 'en-GB,en;q=0.9'})
+              with urllib.request.urlopen(request, timeout=40) as response:
+                  html = response.read(12000000).decode('utf-8')
+              match = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
+              if not match:
+                  raise ValueError('Structured listing data unavailable')
+              return json.loads(match.group(1))['props']['pageProps']
+          try:
+              page = fetch(url)
+              listings = page['listings']
+              detail = fetch(urljoin(url, listings[0]['url']))['listingDetails'] if listings else None
+              print(json.dumps({'reachable': True, 'results': page['numberOfResults'], 'pages': page['numberOfPages'], 'detail_available': bool(detail)}, ensure_ascii=False))
+          except urllib.error.HTTPError as error:
+              print(json.dumps({'reachable': False, 'http_status': error.code}))
+          except (urllib.error.URLError, ValueError, KeyError, TimeoutError) as error:
+              print(json.dumps({'reachable': False, 'error_type': type(error).__name__, 'message': str(error)[:160]}))
+          PY
