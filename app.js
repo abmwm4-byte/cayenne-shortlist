@@ -8,8 +8,8 @@ const number = value => value === null || value === undefined || value === '' ? 
 const money = value => value == null ? 'Цена не указана' : `${number(value)} €`;
 const countries = {DE: 'Германия', IT: 'Италия', BE: 'Бельгия', FR: 'Франция', NL: 'Нидерланды', LU: 'Люксембург', SK: 'Словакия', RO: 'Румыния', ES: 'Испания', LT: 'Литва', LV: 'Латвия', AT: 'Австрия'};
 const kinds = {equipment: 'Список оборудования', attribute: 'Характеристики', description: 'Описание продавца', title: 'Заголовок объявления'};
-const fields = ['search', 'price-min', 'price-max', 'mileage-min', 'mileage-max', 'year', 'country', 'source', 'hide-accident', 'verified-v8', 'duplicates', 'evidence', 'sort'];
-const defaults = {'search': '', 'price-min': '', 'price-max': '', 'mileage-min': '', 'mileage-max': '', year: '', country: '', source: '', 'hide-accident': false, 'verified-v8': false, duplicates: false, evidence: 'all', sort: 'price-asc', mode: 'all', options: []};
+const fields = ['search', 'price-min', 'price-max', 'mileage-min', 'mileage-max', 'year', 'country', 'source', 'hide-accident', 'verified-v8', 'duplicates', 'luxury-min', 'evidence', 'sort'];
+const defaults = {'search': '', 'price-min': '', 'price-max': '', 'mileage-min': '', 'mileage-max': '', year: '', country: '', source: '', 'hide-accident': false, 'verified-v8': false, duplicates: false, 'luxury-min': '', evidence: 'all', sort: 'price-asc', mode: 'all', options: []};
 let dataset;
 let cars = [];
 let catalogue = [];
@@ -79,6 +79,82 @@ function featureIds(car, evidenceMode) {
   return evidenceMode === 'structured' ? car.structuredIds : car.optionIds;
 }
 
+const LUXURY_GROUPS = [
+  {burmester: 25, bose: 8},
+  {pccb: 28, pscb: 14},
+  {pdcc: 18},
+  {air_suspension: 14, pasm: 4, adaptive_suspension: 2},
+  {rear_steering: 12},
+  {ptv_plus: 8, ptv: 5},
+  {lightweight: 24, carbon_roof: 14, panorama: 6, sunroof: 3},
+  {sport_design: 14},
+  {sports_exhaust: 9},
+  {sport_chrono: 7},
+  {hd_matrix: 10, matrix_led: 5},
+  {innodrive: 9, acc: 4, cruise: 0},
+  {night_vision: 8},
+  {seats_18: 8, seats_14: 5},
+  {seat_massage: 10, seat_vent: 5},
+  {club_leather: 10, full_leather: 5},
+  {camera_360: 6, self_parking: 4, rear_camera: 2},
+  {hud: 6},
+  {passenger_display: 6},
+  {soft_close: 5},
+  {aux_heating: 7},
+  {acoustic_glass: 5},
+  {climate_4: 4, climate_3: 2},
+  {wheels_22: 7, wheels_21: 3},
+  {rear_entertainment: 7},
+  {rear_vent: 4},
+  {rear_blinds: 3},
+  {trailer_pivot: 4, trailer_fixed: 3, trailer_hitch: 3},
+  {heated_windshield: 2},
+  {heated_steering: 2},
+  {rear_seat_heat: 2},
+  {keyless: 2},
+  {homelink: 1},
+  {ionizer: 1}
+];
+
+function luxuryScore(car, evidenceMode = 'all') {
+  const items = [];
+  for (const group of LUXURY_GROUPS) {
+    let best = null;
+    for (const [id, weight] of Object.entries(group)) {
+      if (!weight || car.conflicts?.includes(id)) continue;
+      const rows = (car.features?.[id] ?? []).filter(row => evidenceMode !== 'structured' || ['equipment', 'attribute'].includes(row.kind));
+      if (!rows.length) continue;
+      const titleOnly = rows.every(row => row.kind === 'title');
+      const points = weight * (titleOnly ? 0.5 : 1);
+      if (!best || points > best.points) best = {id, weight, points, titleOnly};
+    }
+    if (best) items.push(best);
+  }
+  items.sort((a, b) => b.points - a.points || a.id.localeCompare(b.id));
+  return {total: items.reduce((sum, item) => sum + item.points, 0), items};
+}
+
+function carLuxury(car, mode = controls().evidence) {
+  return (mode === 'structured' ? car.luxuryStructured : car.luxury) ?? luxuryScore(car, mode);
+}
+
+function originalPrice(description) {
+  const match = String(description ?? '').match(/(?:ehemaliger\s+)?\bNeupreis\s*:?\s*([\d][\d.,\s]*?)\s*(?:€|euro)(?!\w)/i);
+  if (!match) return null;
+  const value = Number(match[1].replace(/\s/g, '').replace(/\./g, '').replace(',', '.'));
+  return Number.isFinite(value) && value > 0 ? {value, quote: match[0]} : null;
+}
+
+function scoreNumber(value) {
+  return new Intl.NumberFormat('ru-RU', {maximumFractionDigits: 1}).format(value);
+}
+
+function richnessHTML(car) {
+  const score = carLuxury(car);
+  const original = car.newPrice;
+  return `<section class="richness-panel detail-section"><div class="richness-heading"><div><p class="eyebrow">ДОРОГОЕ ОСНАЩЕНИЕ</p><h3>Жирность комплектации</h3></div><strong>${scoreNumber(score.total)}<small>баллов</small></strong></div><p>Мой сравнительный индекс по указанным опциям, не цена нового автомобиля и не процент от максимума. Неполное объявление может получить меньше баллов. Пробег, нынешняя цена, гарантия и обычные функции вроде ABS на баллы не влияют.</p>${original ? `<p class="original-price-note">Продавец указал цену новой машины: <strong>${money(original.value)}</strong><br><span>${escapeHTML(original.quote)}. Это заявление продавца, не проверенная сумма сделки.</span></p>` : '<p class="hint">Первоначальная цена в объявлении не найдена.</p>'}<details class="score-breakdown"><summary>За что начислены баллы · ${score.items.length} групп</summary><p>Больше веса у дорогостоящих систем. В связанных группах берётся только лучший пункт: например, Burmester вместо суммы Burmester + BOSE; HD-Matrix вместо HD-Matrix + Matrix + LED. Одно упоминание в заголовке даёт половину баллов. Противоречивые пункты не учитываются. Режим «Только в списках и характеристиках» ограничивает и этот расчёт.</p><div>${score.items.map(item => `<div class="score-row"><button type="button" data-help="${escapeHTML(item.id)}">${escapeHTML(optionMap.get(item.id)?.label ?? item.id)}${item.titleOnly ? '<small>Только заголовок: × 0,5</small>' : ''}</button><strong>+${scoreNumber(item.points)}</strong></div>`).join('') || '<p>Нет подходящих подтверждений для взвешенной оценки.</p>'}</div></details></section>`;
+}
+
 function numeric(value) {
   if (value === '') return null;
   const parsed = Number(value);
@@ -86,8 +162,8 @@ function numeric(value) {
 }
 
 function invalidRange(state) {
-  for (const id of ['price-min', 'price-max', 'mileage-min', 'mileage-max']) {
-    if (state[id] !== '' && numeric(state[id]) === null) return 'Цена и пробег должны быть неотрицательными числами.';
+  for (const id of ['price-min', 'price-max', 'mileage-min', 'mileage-max', 'luxury-min']) {
+    if (state[id] !== '' && numeric(state[id]) === null) return 'Цена, пробег и баллы должны быть неотрицательными числами.';
   }
   for (const prefix of ['price', 'mileage']) {
     const min = numeric(state[`${prefix}-min`]);
@@ -104,6 +180,7 @@ function baseMatch(car, state) {
   if (state['hide-accident'] && car.repaired) return false;
   if (state['verified-v8'] && car.cylinders !== 8) return false;
   if (state.duplicates && !car.duplicate_group) return false;
+  if (numeric(state['luxury-min'] ?? '') !== null && carLuxury(car, state.evidence).total < numeric(state['luxury-min'])) return false;
   if (state.search && !car.searchText.includes(fold(state.search.trim()))) return false;
   for (const [prefix, value] of [['price', car.price], ['mileage', car.mileage]]) {
     const min = numeric(state[`${prefix}-min`]);
@@ -131,7 +208,7 @@ function apply({resetLimit = true, updateHash = true} = {}) {
   optionCounts = new Map();
   filtered.forEach(car => featureIds(car, state.evidence).forEach(id => optionCounts.set(id, (optionCounts.get(id) ?? 0) + 1)));
   $('#total').textContent = filtered.length;
-  const compare = {'price-asc': (a, b) => (a.price ?? Infinity) - (b.price ?? Infinity), 'price-desc': (a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity), 'mileage-asc': (a, b) => (a.mileage ?? Infinity) - (b.mileage ?? Infinity), 'options-desc': (a, b) => featureIds(b, state.evidence).size - featureIds(a, state.evidence).size, newest: (a, b) => b.registrationSort.localeCompare(a.registrationSort)}[state.sort];
+  const compare = {'luxury-desc': (a, b) => carLuxury(b, state.evidence).total - carLuxury(a, state.evidence).total, 'luxury-asc': (a, b) => carLuxury(a, state.evidence).total - carLuxury(b, state.evidence).total, 'price-asc': (a, b) => (a.price ?? Infinity) - (b.price ?? Infinity), 'price-desc': (a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity), 'mileage-asc': (a, b) => (a.mileage ?? Infinity) - (b.mileage ?? Infinity), 'options-desc': (a, b) => featureIds(b, state.evidence).size - featureIds(a, state.evidence).size, newest: (a, b) => b.registrationSort.localeCompare(a.registrationSort)}[state.sort];
   filtered.sort((a, b) => (compare ?? (() => 0))(a, b) || (a.price ?? Infinity) - (b.price ?? Infinity) || a.id.localeCompare(b.id));
   if (resetLimit) visibleLimit = 24;
   $('#result-count').textContent = `${filtered.length} ${declension(filtered.length, ['объявление', 'объявления', 'объявлений'])}`;
@@ -193,7 +270,7 @@ function imageURL(value, size = 'mo-640') {
 function cardHTML(car) {
   const image = imageURL(car.images[0]);
   const name = (car.title ?? 'Porsche Cayenne').replace(/^Porsche Cayenne\s*/i, '') || 'Cayenne';
-  return `<article class="car-card" data-car-id="${escapeHTML(car.id)}"><button class="car-photo" type="button" data-open="${escapeHTML(car.id)}" aria-label="Подробнее: ${escapeHTML(car.title)}"><span class="photo-placeholder">Cayenne</span>${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(car.title)}" loading="lazy" decoding="async">` : ''}<span class="source-tag">${escapeHTML(car.source)}</span>${car.images.length ? `<span class="photo-count">${car.images.length} фото</span>` : ''}</button><div class="car-info"><div class="car-topline"><span class="mini-label">PORSCHE CAYENNE</span>${car.repaired ? '<span class="badge danger">После ДТП</span>' : ''}${car.status === 'needs_check' ? '<span class="badge warn">Проверить V8</span>' : ''}${car.duplicate_group ? `<span class="badge">Дубль? ${escapeHTML(car.duplicate_group)}</span>` : ''}</div><button class="car-title" type="button" data-open="${escapeHTML(car.id)}">${escapeHTML(name)}</button><div class="car-price">${money(car.price)}</div><div class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто${car.vat ? ` · НДС ${escapeHTML(car.vat)}%` : ''}` : 'Нетто-цена не указана'}</div><div class="car-facts"><span>${escapeHTML(car.registration ?? '—')}</span><span>${number(car.mileage)} км</span><span>${number(car.hp)} л.с.</span></div><div class="car-options">${optionBadges(car)}</div><div class="car-location" title="${escapeHTML(car.seller)}">${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</div><div class="car-bottom"><a href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">На ${escapeHTML(car.source)} ↗</a><button type="button" data-open="${escapeHTML(car.id)}">Подробнее →</button></div></div></article>`;
+  return `<article class="car-card" data-car-id="${escapeHTML(car.id)}" data-luxury="${carLuxury(car).total}"><button class="car-photo" type="button" data-open="${escapeHTML(car.id)}" aria-label="Подробнее: ${escapeHTML(car.title)}"><span class="photo-placeholder">Cayenne</span>${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(car.title)}" loading="lazy" decoding="async">` : ''}<span class="source-tag">${escapeHTML(car.source)}</span>${car.images.length ? `<span class="photo-count">${car.images.length} фото</span>` : ''}</button><div class="car-info"><div class="car-topline"><span class="mini-label">PORSCHE CAYENNE</span>${car.repaired ? '<span class="badge danger">После ДТП</span>' : ''}${car.status === 'needs_check' ? '<span class="badge warn">Проверить V8</span>' : ''}${car.duplicate_group ? `<span class="badge">Дубль? ${escapeHTML(car.duplicate_group)}</span>` : ''}</div><button class="car-title" type="button" data-open="${escapeHTML(car.id)}">${escapeHTML(name)}</button><button type="button" class="luxury-badge" data-open="${escapeHTML(car.id)}" title="Индекс дорогого оснащения, не первоначальная цена">Жирность · ${scoreNumber(carLuxury(car).total)} баллов</button><div class="car-price">${money(car.price)}</div><div class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто${car.vat ? ` · НДС ${escapeHTML(car.vat)}%` : ''}` : 'Нетто-цена не указана'}</div><div class="car-facts"><span>${escapeHTML(car.registration ?? '—')}</span><span>${number(car.mileage)} км</span><span>${number(car.hp)} л.с.</span></div><div class="car-options">${optionBadges(car)}</div><div class="car-location" title="${escapeHTML(car.seller)}">${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</div><div class="car-bottom"><a href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">На ${escapeHTML(car.source)} ↗</a><button type="button" data-open="${escapeHTML(car.id)}">Подробнее →</button></div></div></article>`;
 }
 
 function imageFallbacks(container) {
@@ -268,7 +345,7 @@ function showCar(id) {
   lastFocused = document.activeElement;
   const specs = [['Регистрация', car.registration], ['Пробег', `${number(car.mileage)} км`], ['Мощность', `${number(car.kw)} кВт / ${number(car.hp)} л.с.`], ['Двигатель', `${number(car.displacement)} см³ · ${number(car.cylinders)} цилиндров`], ['Владельцев', car.owners], ['Цвет', car.color], ['Салон', car.interior], ['Страна', countries[car.country] ?? car.country], ['Город', car.city], ['ДТП (по полям)', car.accident]];
   const duplicates = car.duplicate_group ? cars.filter(other => other.duplicate_group === car.duplicate_group && other.id !== car.id) : [];
-  $('#detail-content').innerHTML = `<div class="detail-body"><div class="detail-head"><div><span class="detail-source">${escapeHTML(car.source)} · ${escapeHTML(car.id)}</span><h2 id="detail-title">${escapeHTML(car.title)}</h2><p class="detail-intro">${escapeHTML(car.seller ?? 'Продавец не указан')}<br>${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</p></div><div><div class="car-price">${money(car.price)}</div><p class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто` : 'Нетто-цена не указана'}</p><a class="button primary" href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">Открыть объявление ↗</a></div></div>${car.repaired ? '<p class="warn-note">Продавец указал отремонтированные последствия ДТП. Фильтр сайта «без повреждений» не исключает такие автомобили.</p>' : ''}${car.status === 'needs_check' ? `<p class="warn-note">${escapeHTML(car.engine_check)}. Это объявление оставлено для ручной проверки.</p>` : ''}${car.conflicts.length ? `<p class="warn-note">Есть противоречивые упоминания опций: ${escapeHTML(car.conflicts.map(key => optionMap.get(key).label).join(', '))}. Уточни у продавца.</p>` : ''}<div class="detail-gallery"><div><div class="gallery-main" id="gallery-main"></div><div class="gallery-thumbs">${car.images.map((image, index) => `<button type="button" data-image="${index}" aria-label="Фото ${index + 1}" class="${index === 0 ? 'active' : ''}"><img src="${escapeHTML(imageURL(image, 'mo-160'))}" alt="Фото ${index + 1}" loading="lazy"></button>`).join('')}</div></div><dl class="detail-specs">${specs.map(([label, value]) => `<dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value ?? 'не указано')}</dd>`).join('')}</dl></div>${duplicates.length ? `<section class="detail-section"><h3>Возможные дубли: сравни цены</h3><p>Совпали регистрация, пробег и мощность. Это не подтверждение совпадения автомобиля по VIN.</p><div class="duplicate-list">${duplicates.map(other => `<div class="duplicate-row"><div><strong>${money(other.price)} · ${escapeHTML(other.source)}</strong>${escapeHTML(other.title)}<br>${escapeHTML(other.seller ?? '')}</div><a href="${escapeHTML(other.url)}" target="_blank" rel="noopener noreferrer">Открыть ↗</a></div>`).join('')}</div></section>` : ''}${equipmentSections(car)}<section class="detail-section"><h3>Описание продавца · оригинал</h3><pre class="original-text">${escapeHTML(car.description || 'Описание не заполнено')}</pre></section><details class="detail-section original-source"><summary>Исходный список оборудования <span>${car.equipment.length} пунктов</span></summary><div class="original-equipment">${car.equipment.length ? car.equipment.map(value => `<span class="option-pill">${escapeHTML(value)}</span>`).join('') : '<p>Отдельный список не заполнен продавцом.</p>'}</div></details><p class="detail-footnote">Снимок: ${escapeHTML(new Date(car.fetched_at).toLocaleString('ru-RU'))}. Цена и наличие могли измениться. Внешние фотографии загружаются с площадок объявлений.</p></div>`;
+  $('#detail-content').innerHTML = `<div class="detail-body"><div class="detail-head"><div><span class="detail-source">${escapeHTML(car.source)} · ${escapeHTML(car.id)}</span><h2 id="detail-title">${escapeHTML(car.title)}</h2><p class="detail-intro">${escapeHTML(car.seller ?? 'Продавец не указан')}<br>${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</p></div><div><div class="car-price">${money(car.price)}</div><p class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто` : 'Нетто-цена не указана'}</p><a class="button primary" href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">Открыть объявление ↗</a></div></div>${car.repaired ? '<p class="warn-note">Продавец указал отремонтированные последствия ДТП. Фильтр сайта «без повреждений» не исключает такие автомобили.</p>' : ''}${car.status === 'needs_check' ? `<p class="warn-note">${escapeHTML(car.engine_check)}. Это объявление оставлено для ручной проверки.</p>` : ''}${car.conflicts.length ? `<p class="warn-note">Есть противоречивые упоминания опций: ${escapeHTML(car.conflicts.map(key => optionMap.get(key).label).join(', '))}. Уточни у продавца.</p>` : ''}<div class="detail-gallery"><div><div class="gallery-main" id="gallery-main"></div><div class="gallery-thumbs">${car.images.map((image, index) => `<button type="button" data-image="${index}" aria-label="Фото ${index + 1}" class="${index === 0 ? 'active' : ''}"><img src="${escapeHTML(imageURL(image, 'mo-160'))}" alt="Фото ${index + 1}" loading="lazy"></button>`).join('')}</div></div><dl class="detail-specs">${specs.map(([label, value]) => `<dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value ?? 'не указано')}</dd>`).join('')}</dl></div>${duplicates.length ? `<section class="detail-section"><h3>Возможные дубли: сравни цены</h3><p>Совпали регистрация, пробег и мощность. Это не подтверждение совпадения автомобиля по VIN.</p><div class="duplicate-list">${duplicates.map(other => `<div class="duplicate-row"><div><strong>${money(other.price)} · ${escapeHTML(other.source)}</strong>${escapeHTML(other.title)}<br>${escapeHTML(other.seller ?? '')}</div><a href="${escapeHTML(other.url)}" target="_blank" rel="noopener noreferrer">Открыть ↗</a></div>`).join('')}</div></section>` : ''}${richnessHTML(car)}${equipmentSections(car)}<section class="detail-section"><h3>Описание продавца · оригинал</h3><pre class="original-text">${escapeHTML(car.description || 'Описание не заполнено')}</pre></section><details class="detail-section original-source"><summary>Исходный список оборудования <span>${car.equipment.length} пунктов</span></summary><div class="original-equipment">${car.equipment.length ? car.equipment.map(value => `<span class="option-pill">${escapeHTML(value)}</span>`).join('') : '<p>Отдельный список не заполнен продавцом.</p>'}</div></details><p class="detail-footnote">Снимок: ${escapeHTML(new Date(car.fetched_at).toLocaleString('ru-RU'))}. Цена и наличие могли измениться. Внешние фотографии загружаются с площадок объявлений.</p></div>`;
   renderGallery();
   imageFallbacks($('#detail-content'));
   const dialog = $('#detail-dialog');
@@ -293,7 +370,7 @@ function downloadCSV() {
     if (/^[\s]*[=+@-]/.test(content)) content = `'${content}`;
     return `"${content.replace(/"/g, '""')}"`;
   };
-  const rows = [['Источник', 'Ссылка', 'Название', 'Цена EUR', 'Нетто EUR', 'Пробег км', 'Регистрация', 'Страна', 'Город', 'Продавец', 'Цилиндры', 'ДТП', 'Возможные дубли', 'Унифицированные опции', 'Описание оригинал'], ...filtered.map(car => [car.source, car.url, car.title, car.price, car.net_price, car.mileage, car.registration, countries[car.country] ?? car.country, car.city, car.seller, car.cylinders, car.accident, car.duplicate_group, Array.from(featureIds(car, controls().evidence)).map(id => optionMap.get(id).label).join('; '), car.description])];
+  const rows = [['Источник', 'Ссылка', 'Название', 'Цена EUR', 'Нетто EUR', 'Пробег км', 'Регистрация', 'Страна', 'Город', 'Продавец', 'Цилиндры', 'ДТП', 'Возможные дубли', 'Унифицированные опции', 'Жирность, баллы', 'Цена новой машины по заявлению продавца EUR', 'Описание оригинал'], ...filtered.map(car => [car.source, car.url, car.title, car.price, car.net_price, car.mileage, car.registration, countries[car.country] ?? car.country, car.city, car.seller, car.cylinders, car.accident, car.duplicate_group, Array.from(featureIds(car, controls().evidence)).map(id => optionMap.get(id).label).join('; '), carLuxury(car).total, car.newPrice?.value, car.description])];
   const blob = new Blob(['\uFEFF' + rows.map(row => row.map(quote).join(';')).join('\r\n')], {type: 'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -353,6 +430,7 @@ function bindEvents() {
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) event.target.close();
   });
   $('#export').addEventListener('click', downloadCSV);
+  $('#sort-richest').addEventListener('click', () => { $('#sort').value = 'luxury-desc'; apply(); });
   $('#share').addEventListener('click', async () => {
     apply();
     try { await navigator.clipboard.writeText(location.href); toast('Ссылка с выбранными фильтрами скопирована'); }
@@ -371,6 +449,7 @@ async function init() {
     optionMap = new Map(catalogue.map(item => [item.id, item]));
     baselineIds = new Set((dataset.common_options ?? []).filter(id => optionMap.has(id)));
     cars = dataset.cars.map(car => ({...car, optionIds: new Set(Object.keys(car.features)), structuredIds: new Set(Object.keys(car.features).filter(id => car.features[id].some(row => ['equipment', 'attribute'].includes(row.kind)))), searchText: fold([car.title, car.description, car.seller, car.city, countries[car.country], ...car.equipment, ...Object.keys(car.features).map(id => optionMap.get(id)?.label)].join(' ')), repaired: car.accident?.startsWith('Отремонтированные'), registrationSort: car.registration?.split('/').reverse().join('-') ?? ''}));
+    cars = cars.map(car => ({...car, luxury: luxuryScore(car), luxuryStructured: luxuryScore(car, 'structured'), newPrice: originalPrice(car.description)}));
     carMap = new Map(cars.map(car => [car.id, car]));
     $('#total').textContent = cars.length;
     $('#option-total').textContent = catalogue.length;

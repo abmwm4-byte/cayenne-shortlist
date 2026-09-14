@@ -9,8 +9,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://prod.pictures.autoscout24.net https://img.classistatic.de; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Личная подборка Porsche Cayenne V8: сравнение объявлений AutoScout24 и mobile.de по цене, пробегу и унифицированным опциям.">
   <title>Cayenne V8 · Подборка</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js?v=live-counts-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=richness-1">
+  <script src="app.js?v=richness-1" defer></script>
 </head>
 <body>
   <a href="#results" class="skip">К результатам</a>
@@ -36,6 +36,7 @@
             <label class="field">Площадка<select id="source"><option value="">Обе площадки</option><option value="mobile.de">mobile.de</option><option value="AutoScout24">AutoScout24</option></select></label>
             <div class="checks"><label><input type="checkbox" id="hide-accident"><span>Скрыть явно указанные ДТП</span></label><label><input type="checkbox" id="verified-v8"><span>Только 8 цилиндров в карточке</span></label><label><input type="checkbox" id="duplicates"><span>Только возможные дубли</span></label></div>
             <div class="divider"></div>
+            <div class="richness-filter"><label class="field">Жирность комплектации, от баллов<input id="luxury-min" type="number" min="0" step="1" placeholder="Любая комплектация"></label><button id="sort-richest" class="button" type="button">Самые жирные сначала</button><p>Вес дорогих опций, не цена новой машины. Расшифровка — в карточке.</p></div>
             <div class="section-title"><h2>Комплектация</h2><span id="selected-number">0 выбрано</span></div>
             <p class="hint">Отсутствие упоминания не означает, что опции нет.</p>
             <fieldset class="segmented"><legend class="sr-only">Как сочетать выбранные опции</legend><label><input type="radio" name="mode" value="all" checked><span>Все выбранные</span></label><label><input type="radio" name="mode" value="any"><span>Хотя бы одна</span></label></fieldset>
@@ -49,7 +50,7 @@
       </aside>
       <section class="results" id="results" aria-label="Результаты поиска">
         <div class="quick-section"><div class="small-heading">ЧАСТО ИЩУТ</div><div class="quick-options" id="quick-options"></div></div>
-        <div class="results-bar"><div><h2><span id="result-count">Загрузка…</span></h2><p id="result-note">Собираем удобное представление</p></div><div class="result-actions"><label class="sr-only" for="sort">Сортировка</label><select id="sort"><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option><option value="mileage-asc">Меньше пробег</option><option value="options-desc">Больше указанных опций</option><option value="newest">Новее регистрация</option></select><button class="button small" id="export" type="button">CSV</button></div></div>
+        <div class="results-bar"><div><h2><span id="result-count">Загрузка…</span></h2><p id="result-note">Собираем удобное представление</p></div><div class="result-actions"><label class="sr-only" for="sort">Сортировка</label><select id="sort"><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option><option value="mileage-asc">Меньше пробег</option><option value="luxury-desc">Самые жирные сначала</option><option value="luxury-asc">Самые простые сначала</option><option value="options-desc">Больше указанных опций</option><option value="newest">Новее регистрация</option></select><button class="button small" id="export" type="button">CSV</button></div></div>
         <div id="selected-chips" class="selected-chips" aria-label="Выбранные опции"></div>
         <p id="filter-error" class="error-box" hidden></p>
         <div class="legend-line"><span class="legend-dot"></span>Опции объединены по смыслу. Нажми на карточку, чтобы увидеть оригинальные подтверждения.</div>
