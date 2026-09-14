@@ -9,8 +9,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://prod.pictures.autoscout24.net https://img.classistatic.de; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Личная подборка Porsche Cayenne V8: сравнение объявлений AutoScout24 и mobile.de по цене, пробегу и унифицированным опциям.">
   <title>Cayenne V8 · Подборка</title>
-  <link rel="stylesheet" href="style.css?v=richness-1">
-  <script src="app.js?v=richness-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=radar-1">
+  <script src="app.js?v=radar-1" defer></script>
 </head>
 <body>
   <a href="#results" class="skip">К результатам</a>
@@ -23,6 +23,7 @@
       <div class="hero-copy"><p class="eyebrow">PORSCHE CAYENNE · 2023—2024 · БЕЗ ГИБРИДОВ</p><h1>Твой Cayenne.<br><span>Нужная комплектация.</span></h1><p class="intro">Две площадки. Один список опций.<br>Выбери то, что важно тебе, и сравни подходящие объявления.</p></div>
       <div class="hero-stats" aria-label="Статистика подборки"><div><strong id="total">—</strong><span>по фильтрам</span></div><div><strong id="option-total">—</strong><span>уникальных опций</span></div><div><strong>02</strong><span>площадки</span></div><p id="snapshot">Загрузка снимка объявлений…</p></div>
     </section>
+    <section id="radar-panel" class="radar-panel" aria-label="Радар новых объявлений"><h2>Радар объявлений</h2><p>Загрузка истории мониторинга…</p></section>
     <div class="workspace">
       <aside class="sidebar">
         <details class="filter-panel" id="filter-panel" open>
@@ -33,8 +34,9 @@
             <fieldset><legend>Цена, €</legend><div class="range"><input id="price-min" type="number" min="0" step="1000" aria-label="Цена от" placeholder="От"><span>—</span><input id="price-max" type="number" min="0" step="1000" aria-label="Цена до" placeholder="До"></div></fieldset>
             <fieldset><legend>Пробег, км</legend><div class="range"><input id="mileage-min" type="number" min="0" step="1000" aria-label="Пробег от" placeholder="От"><span>—</span><input id="mileage-max" type="number" min="0" step="1000" aria-label="Пробег до" placeholder="До"></div></fieldset>
             <div class="field-pair"><label class="field">Регистрация<select id="year"><option value="">Любой год</option><option value="2023">2023</option><option value="2024">2024</option></select></label><label class="field">Страна<select id="country"><option value="">Все страны</option></select></label></div>
+            <label class="field">События радара<select id="updates"><option value="">Все объявления</option><option value="new">Новые за 7 дней</option><option value="price_drop">Цена снижалась за 7 дней</option><option value="not_found">Не найдено в поиске</option></select></label>
             <label class="field">Площадка<select id="source"><option value="">Обе площадки</option><option value="mobile.de">mobile.de</option><option value="AutoScout24">AutoScout24</option></select></label>
-            <div class="checks"><label><input type="checkbox" id="hide-accident"><span>Скрыть явно указанные ДТП</span></label><label><input type="checkbox" id="verified-v8"><span>Только 8 цилиндров в карточке</span></label><label><input type="checkbox" id="duplicates"><span>Только возможные дубли</span></label></div>
+            <div class="checks"><label><input type="checkbox" id="hide-accident"><span>Скрыть явно указанные ДТП</span></label><label><input type="checkbox" id="verified-v8"><span>Только 8 цилиндров в карточке</span></label><label><input type="checkbox" id="duplicates"><span>Только возможные дубли</span></label><label><input type="checkbox" id="hide-unavailable"><span>Скрыть не найденные в поиске</span></label></div>
             <div class="divider"></div>
             <div class="richness-filter"><label class="field">Жирность комплектации, от баллов<input id="luxury-min" type="number" min="0" step="1" placeholder="Любая комплектация"></label><button id="sort-richest" class="button" type="button">Самые жирные сначала</button><p>Вес дорогих опций, не цена новой машины. Расшифровка — в карточке.</p></div>
             <div class="section-title"><h2>Комплектация</h2><span id="selected-number">0 выбрано</span></div>

@@ -1,0 +1,2408 @@
+{
+  "catalogue": {
+    "air_suspension": {
+      "id": "air_suspension",
+      "label": "Пневмоподвеска",
+      "category": "chassis",
+      "aliases": [
+        "Air suspension",
+        "Luftfederung",
+        "пневмоподвеска",
+        "suspension pneumatique",
+        "sospensioni pneumatiche",
+        "luchtvering"
+      ],
+      "description": "Пневматические упругие элементы вместо обычных пружин позволяют регулировать уровень кузова. Важны для комфорта и изменения дорожного просвета. PASM сам по себе не подтверждает наличие пневмоподвески.",
+      "finder_name": "Luftfederung",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "adaptive_suspension": {
+      "id": "adaptive_suspension",
+      "label": "Адаптивная подвеска",
+      "category": "chassis",
+      "aliases": [
+        "Adaptives Fahrwerk",
+        "Adaptive suspension"
+      ],
+      "description": "Общее обозначение подвески с изменяемыми характеристиками. Не уточняет конкретную систему Porsche и не означает наличие пневмобаллонов.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "pasm": {
+      "id": "pasm",
+      "label": "Porsche PASM",
+      "category": "chassis",
+      "aliases": [
+        "PASM",
+        "Porsche Active Suspension Management"
+      ],
+      "description": "Porsche Active Suspension Management электронно регулирует работу амортизаторов в зависимости от дороги и режима движения. Это управление демпфированием, а не синоним пневмоподвески.",
+      "finder_name": "Porsche Active Suspension Management (PASM)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "pdcc": {
+      "id": "pdcc",
+      "label": "Porsche PDCC",
+      "category": "chassis",
+      "aliases": [
+        "PDCC",
+        "Porsche Dynamic Chassis Control"
+      ],
+      "description": "Porsche Dynamic Chassis Control — система активного подавления кренов кузова. Она отличается от PASM и пневмоподвески: эти системы решают разные задачи.",
+      "finder_name": "Porsche Dynamic Chassis Control (PDCC)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "rear_steering": {
+      "id": "rear_steering",
+      "label": "Подруливающая задняя ось",
+      "category": "chassis",
+      "aliases": [
+        "Hinterachslenkung",
+        "rear-axle steering",
+        "rear axle steering",
+        "HA-Lenkung",
+        "HA-Lenk",
+        "рулевая задняя ось"
+      ],
+      "description": "Задние колёса могут поворачиваться вместе с передними или в противоположную сторону. На малой скорости это облегчает маневрирование, на высокой помогает устойчивости.",
+      "finder_name": "Hinterachslenkung",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "sport_chrono": {
+      "id": "sport_chrono",
+      "label": "Sport Chrono",
+      "category": "chassis",
+      "aliases": [
+        "Sport Chrono",
+        "Sport-Chrono",
+        "SportChrono",
+        "SpChr"
+      ],
+      "description": "Пакет спортивных функций и режимов. В зависимости от модели может включать Sport Plus, секундомер и Launch Control. Точный состав проверяется для конкретного автомобиля, а не переносится с другой модели Porsche.",
+      "finder_name": "Sport Chrono Paket",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "sport_design": {
+      "id": "sport_design",
+      "label": "Пакет SportDesign",
+      "category": "packages",
+      "aliases": [
+        "SportDesign-Paket",
+        "SportDesign Paket",
+        "Sport-Design-Paket",
+        "Sport Design Paket",
+        "SportDesign package",
+        "Sport Design package",
+        "Sport-Design Paket"
+      ],
+      "description": "Пакет оформления кузова SportDesign. Его нельзя подтверждать только по дискам, порогам или одному бамперу с названием SportDesign.",
+      "finder_name": "SportDesign Package",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "sport_design_elements": {
+      "id": "sport_design_elements",
+      "label": "SportDesign — элементы / упоминание",
+      "category": "exterior",
+      "aliases": [
+        "SportDesign",
+        "Sport-Design",
+        "Sport Design"
+      ],
+      "description": "В тексте есть SportDesign, но не обязательно указан полный пакет. Это могут быть отдельные диски, детали кузова или сокращение в заголовке.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "sports_exhaust": {
+      "id": "sports_exhaust",
+      "label": "Спортивный выхлоп",
+      "category": "chassis",
+      "aliases": [
+        "Sportabgasanlage",
+        "Sportabgas",
+        "Sportauspuff",
+        "Sportuitlaat",
+        "Sports exhaust",
+        "Sport exhaust",
+        "scarico sportivo",
+        "echappement sport"
+      ],
+      "description": "Спортивная выпускная система с изменённым звучанием. Спортивные насадки сами по себе не доказывают наличие всей системы.",
+      "finder_name": "Sportabgasanlage",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "lightweight": {
+      "id": "lightweight",
+      "label": "Облегчённый спортивный пакет",
+      "category": "packages",
+      "aliases": [
+        "Leichtbau-Sport-Paket",
+        "Leichtbaupaket",
+        "Lightweight Sport Package",
+        "Leichtbau-Paket"
+      ],
+      "description": "Облегчённый спортивный пакет: набор элементов, ориентированных на снижение массы и спортивное оформление. Состав зависит от версии Cayenne, его нужно сверять отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "pccb": {
+      "id": "pccb",
+      "label": "Карбон-керамические тормоза PCCB",
+      "category": "chassis",
+      "aliases": [
+        "PCCB",
+        "Porsche Ceramic Composite Brake"
+      ],
+      "description": "Карбон-керамическая тормозная система Porsche Ceramic Composite Brake. Не равнозначна обычным тормозам или системе PSCB.",
+      "finder_name": "Porsche Ceramic Composite Brake (PCCB)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "power_steering_plus": {
+      "id": "power_steering_plus",
+      "label": "Усилитель руля Plus",
+      "category": "chassis",
+      "aliases": [
+        "Servolenkung Plus",
+        "Power steering Plus"
+      ],
+      "description": "Усилитель рулевого управления Plus изменяет помощь рулю в зависимости от скорости. Не означает наличие подруливающей задней оси.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "power_steering": {
+      "id": "power_steering",
+      "label": "Усилитель руля",
+      "category": "chassis",
+      "aliases": [
+        "Power steering",
+        "Servolenkung"
+      ],
+      "description": "Усилитель снижает усилие на руле. Простое упоминание не подтверждает версию Servolenkung Plus.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "awd": {
+      "id": "awd",
+      "label": "Полный привод",
+      "category": "chassis",
+      "aliases": [
+        "Allradantrieb",
+        "Allrad",
+        "4WD"
+      ],
+      "description": "Привод передаёт тягу на обе оси. Полный привод не означает наличие задней управляемой оси или PDCC.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "sport_suspension": {
+      "id": "sport_suspension",
+      "label": "Спортивная подвеска",
+      "category": "chassis",
+      "aliases": [
+        "Sport suspension",
+        "Sportfahrwerk"
+      ],
+      "description": "Спортивная настройка подвески. Название само по себе не подтверждает PASM, PDCC или пневмоподвеску.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "sport_package": {
+      "id": "sport_package",
+      "label": "Спортивный пакет (без уточнения)",
+      "category": "packages",
+      "aliases": [
+        "Sport package",
+        "Sportpaket"
+      ],
+      "description": "Общее название спортивного пакета без точного состава. Не заменяет отдельное подтверждение Sport Chrono или SportDesign.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "alloy_wheels": {
+      "id": "alloy_wheels",
+      "label": "Легкосплавные диски",
+      "category": "wheels",
+      "aliases": [
+        "Alloy wheels",
+        "Leichtmetallfelgen"
+      ],
+      "description": "Легкосплавные колёсные диски. Диаметр, дизайн и наличие второго комплекта проверяются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wheels_20": {
+      "id": "wheels_20",
+      "label": "Диски 20 дюймов",
+      "category": "wheels",
+      "aliases": [
+        "Alloy wheels (20\")",
+        "20-Zoll",
+        "20 Zoll"
+      ],
+      "description": "В объявлении указан диаметр дисков 20 дюймов. Это не означает, что такой размер установлен на обоих комплектах колёс.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wheels_21": {
+      "id": "wheels_21",
+      "label": "Диски 21 дюйм",
+      "category": "wheels",
+      "aliases": [
+        "Alloy wheels (21\")",
+        "21-Zoll",
+        "21 Zoll"
+      ],
+      "description": "В объявлении указан диаметр дисков 21 дюйм. Конкретный дизайн и комплект шин уточняются у продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wheels_22": {
+      "id": "wheels_22",
+      "label": "Диски 22 дюйма",
+      "category": "wheels",
+      "aliases": [
+        "Alloy wheels (22\")",
+        "22-Zoll",
+        "22 Zoll"
+      ],
+      "description": "В объявлении указан диаметр дисков 22 дюйма. Больший диаметр не подтверждает пакет SportDesign целиком.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "summer_tyres": {
+      "id": "summer_tyres",
+      "label": "Летние шины",
+      "category": "wheels",
+      "aliases": [
+        "Summer tyres",
+        "Sommerreifen"
+      ],
+      "description": "Указаны летние шины. Их наличие не подтверждает второй зимний комплект.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "winter_tyres": {
+      "id": "winter_tyres",
+      "label": "Зимние шины",
+      "category": "wheels",
+      "aliases": [
+        "Winter tyres",
+        "Winterreifen"
+      ],
+      "description": "Указаны зимние шины. Уточни, включены ли отдельные диски и весь комплект в цену.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "all_season_tyres": {
+      "id": "all_season_tyres",
+      "label": "Всесезонные шины",
+      "category": "wheels",
+      "aliases": [
+        "All season tyres",
+        "Ganzjahresreifen"
+      ],
+      "description": "Указаны всесезонные шины. Состояние, маркировку и размер нужно проверить отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "panorama": {
+      "id": "panorama",
+      "label": "Панорамная крыша",
+      "category": "exterior",
+      "aliases": [
+        "Panorama roof",
+        "Panorama-Dach",
+        "Panoramadach",
+        "Panorama Dachsystem",
+        "Panoramic roof",
+        "Pano",
+        "toit panoramique",
+        "tetto panoramico",
+        "panoramadak"
+      ],
+      "description": "Большая площадь остекления крыши. У разных кузовов и версий исполнение отличается: наличие панорамы не подтверждает, что крыша открывается.",
+      "finder_name": "Panoramadach",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "sunroof": {
+      "id": "sunroof",
+      "label": "Открывающийся люк",
+      "category": "exterior",
+      "aliases": [
+        "Sunroof",
+        "Schiebedach"
+      ],
+      "description": "Люк, который можно открыть или приподнять. В каталоге он отделён от панорамной крыши, которая может быть фиксированной.",
+      "finder_name": "Schiebedach",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "soft_close": {
+      "id": "soft_close",
+      "label": "Доводчики дверей Soft Close",
+      "category": "assist",
+      "aliases": [
+        "Soft-Close",
+        "Soft Close",
+        "SoftClose",
+        "Soft-Close-Türen"
+      ],
+      "description": "Механизм мягко дотягивает неплотно прикрытую дверь до закрытого положения. Не равнозначен бесключевому доступу.",
+      "finder_name": "Soft-Close-Türen",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "aux_heating": {
+      "id": "aux_heating",
+      "label": "Автономный отопитель",
+      "category": "seats",
+      "aliases": [
+        "Auxiliary heating",
+        "Standheizung"
+      ],
+      "description": "Автономный отопитель позволяет прогреть салон без обычной поездки с работающим двигателем. Способ запуска и возможности пульта уточняются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "ac": {
+      "id": "ac",
+      "label": "Кондиционер",
+      "category": "seats",
+      "aliases": [
+        "Air conditioning",
+        "Klimaanlage"
+      ],
+      "description": "Система охлаждения воздуха в салоне. Само слово «кондиционер» не подтверждает автоматическое поддержание температуры или число зон.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "climate": {
+      "id": "climate",
+      "label": "Автоматический климат-контроль",
+      "category": "seats",
+      "aliases": [
+        "Automatic climate control",
+        "Klimaautomatik"
+      ],
+      "description": "Климат-контроль автоматически поддерживает заданную температуру. Число независимых зон указано отдельными пунктами.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "climate_2": {
+      "id": "climate_2",
+      "label": "Климат-контроль: 2 зоны",
+      "category": "seats",
+      "aliases": [
+        "Automatic climate control, 2 zones",
+        "2-Zonen-Klimaautomatik",
+        "2-Zonen Klimaautomatik"
+      ],
+      "description": "Двухзонный климат-контроль: раздельные настройки температуры для двух зон салона.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "climate_3": {
+      "id": "climate_3",
+      "label": "Климат-контроль: 3 зоны",
+      "category": "seats",
+      "aliases": [
+        "Automatic climate control, 3 zones",
+        "3-Zonen-Klimaautomatik",
+        "3-Zonen Klimaautomatik"
+      ],
+      "description": "Трёхзонный климат-контроль. Он не равнозначен четырёхзонному исполнению.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "climate_4": {
+      "id": "climate_4",
+      "label": "Климат-контроль: 4 зоны",
+      "category": "seats",
+      "aliases": [
+        "Automatic climate control, 4 zones",
+        "4-Zonen-Klimaautomatik",
+        "4-Zonen Klimaautomatik"
+      ],
+      "description": "Четыре зоны регулирования климата, включая заднюю часть салона. Не путать с обычным климат-контролем без уточнения числа зон.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "heated_steering": {
+      "id": "heated_steering",
+      "label": "Подогрев руля",
+      "category": "seats",
+      "aliases": [
+        "Heated steering wheel",
+        "Beheizbares Lenkrad",
+        "Lenkradheizung",
+        "Lenkrad beheizbar"
+      ],
+      "description": "Подогрев обода рулевого колеса. Наличие подогрева сидений не подтверждает эту функцию.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "keyless": {
+      "id": "keyless",
+      "label": "Бесключевой доступ",
+      "category": "assist",
+      "aliases": [
+        "Keyless central door lock",
+        "Schlüssellose Zentralverriegelung (Keyless)",
+        "Keyless",
+        "Porsche Entry & Drive",
+        "Komfortzugang"
+      ],
+      "description": "Доступ в автомобиль без обычного нажатия кнопки ключа. Наличие запуска двигателя кнопкой само по себе не доказывает полноценный бесключевой доступ.",
+      "finder_name": "Porsche Entry & Drive – Komfortzugang",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "ambient": {
+      "id": "ambient",
+      "label": "Атмосферная подсветка салона",
+      "category": "seats",
+      "aliases": [
+        "Ambient lighting",
+        "Ambiente-Beleuchtung",
+        "Ambientebeleuchtung"
+      ],
+      "description": "Декоративная фоновая подсветка салона. Набор цветов и зон зависит от исполнения.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "heated_windshield": {
+      "id": "heated_windshield",
+      "label": "Подогрев лобового стекла",
+      "category": "seats",
+      "aliases": [
+        "Electrically heated windshield",
+        "Beheizbare Frontscheibe"
+      ],
+      "description": "Электрический обогрев лобового стекла. Отличается от обычного обдува тёплым воздухом.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "electric_tailgate": {
+      "id": "electric_tailgate",
+      "label": "Электропривод багажника",
+      "category": "exterior",
+      "aliases": [
+        "Electric tailgate",
+        "Elektr. Heckklappe"
+      ],
+      "description": "Электрическое открывание и закрывание крышки багажника. Не обязательно включает бесконтактное управление ногой.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "electric_windows": {
+      "id": "electric_windows",
+      "label": "Электростеклоподъёмники",
+      "category": "seats",
+      "aliases": [
+        "Power windows",
+        "Elektr. Fensterheber"
+      ],
+      "description": "Электрическое управление стёклами. Конкретные функции автоматического подъёма зависят от автомобиля.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "central_lock": {
+      "id": "central_lock",
+      "label": "Центральный замок",
+      "category": "assist",
+      "aliases": [
+        "Central door lock",
+        "Zentralverriegelung"
+      ],
+      "description": "Централизованное запирание дверей. Само упоминание не подтверждает бесключевой доступ.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "remote_lock": {
+      "id": "remote_lock",
+      "label": "Центральный замок с ДУ",
+      "category": "assist",
+      "aliases": [
+        "Central door lock with remote control",
+        "Zentralverriegelung mit Fernbedienung"
+      ],
+      "description": "Центральный замок с дистанционным управлением с ключа. Отличается от доступа без нажатия кнопки Keyless.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "winter_package": {
+      "id": "winter_package",
+      "label": "Зимний пакет",
+      "category": "packages",
+      "aliases": [
+        "Winter package",
+        "Winterpaket"
+      ],
+      "description": "Зимний пакет: объединённый набор функций для холодной погоды. Его точный состав нельзя определять только по названию.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "seat_heat": {
+      "id": "seat_heat",
+      "label": "Подогрев сидений",
+      "category": "seats",
+      "aliases": [
+        "Seat heating",
+        "Sitzheizung",
+        "Sitzheizung vorn"
+      ],
+      "description": "Подогрев сидений. Если задний ряд не указан явно, не считаем, что он тоже оснащён подогревом.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "rear_seat_heat": {
+      "id": "rear_seat_heat",
+      "label": "Подогрев задних сидений",
+      "category": "seats",
+      "aliases": [
+        "Rear seat heating",
+        "Sitzheizung hinten",
+        "Sitzheizung im Fond"
+      ],
+      "description": "Явно указан подогрев задних сидений. Выделен отдельно от общего упоминания подогрева.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "seat_vent": {
+      "id": "seat_vent",
+      "label": "Вентиляция сидений",
+      "category": "seats",
+      "aliases": [
+        "Seat ventilation",
+        "Sitzbelüftung",
+        "Sitzbelueftung",
+        "ventilated seats",
+        "sedili ventilati"
+      ],
+      "description": "Вентиляция сидений повышает комфорт в тёплую погоду. Не равнозначна массажу и не подтверждает вентиляцию заднего ряда.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "seat_massage": {
+      "id": "seat_massage",
+      "label": "Массаж сидений",
+      "category": "seats",
+      "aliases": [
+        "Massage seats",
+        "Massagesitze",
+        "Massagefunktion",
+        "Massage-Sitze"
+      ],
+      "description": "Функция массажа в сиденьях. Наличие вентиляции или электрорегулировок само по себе её не подтверждает.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "electric_seats": {
+      "id": "electric_seats",
+      "label": "Электрорегулировка сидений",
+      "category": "seats",
+      "aliases": [
+        "Electrically adjustable seats",
+        "Elektr. Sitzeinstellung"
+      ],
+      "description": "Положение сидений регулируется электроприводами. Число регулировок и функция памяти проверяются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "seat_memory": {
+      "id": "seat_memory",
+      "label": "Память сидений",
+      "category": "seats",
+      "aliases": [
+        "Elektr. Sitzeinstellung mit Memory-Funktion",
+        "Memory-Paket",
+        "Memory-Funktion",
+        "Memory Paket",
+        "Memory package"
+      ],
+      "description": "Запоминает настройки положения сиденья. Дополнительные настройки зеркал и руля зависят от состава пакета.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "seats_14": {
+      "id": "seats_14",
+      "label": "Сиденья: 14 регулировок",
+      "category": "seats",
+      "aliases": [
+        "14-Wege",
+        "14 Wege",
+        "14-way",
+        "14 way",
+        "14 positions",
+        "14Wg"
+      ],
+      "description": "Сиденья с 14 регулировками. В Porsche Finder этот пункт выделен отдельно от 18-позиционных спортивных сидений.",
+      "finder_name": "Komfortsitze vorne elektrisch verstellbar, 14-Wege",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "seats_18": {
+      "id": "seats_18",
+      "label": "Сиденья: 18 регулировок",
+      "category": "seats",
+      "aliases": [
+        "18-Wege",
+        "18 Wege",
+        "18-way",
+        "18 way",
+        "18 positions",
+        "18Wg"
+      ],
+      "description": "Сиденья с 18 регулировками. Не путать с 14-позиционными сиденьями или общим словом «электросиденья».",
+      "finder_name": "Sportsitze vorne elektrisch verstellbar, 18-Wege",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "rear_electric_seats": {
+      "id": "rear_electric_seats",
+      "label": "Электрорегулировка задних сидений",
+      "category": "seats",
+      "aliases": [
+        "Electric backseat adjustment"
+      ],
+      "description": "Электрическая регулировка задних сидений. Редкая формулировка требует проверки конкретного исполнения.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "sport_seats": {
+      "id": "sport_seats",
+      "label": "Спортивные сиденья",
+      "category": "seats",
+      "aliases": [
+        "Sport seats",
+        "Sportsitze"
+      ],
+      "description": "Сиденья спортивного исполнения с более выраженной поддержкой. Само название не подтверждает 18 регулировок.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "leather_seats": {
+      "id": "leather_seats",
+      "label": "Кожаная / частично кожаная отделка",
+      "category": "materials",
+      "aliases": [
+        "Leather seats",
+        "Lederausstattung"
+      ],
+      "description": "Общее упоминание кожи в отделке. Может означать частичную отделку, поэтому полный кожаный салон выделен отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "full_leather": {
+      "id": "full_leather",
+      "label": "Полностью кожаная отделка",
+      "category": "materials",
+      "aliases": [
+        "Vollleder",
+        "Full leather"
+      ],
+      "description": "В объявлении прямо указана полная кожаная отделка. Точный набор обтянутых кожей деталей проверяется по комплектации.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "partial_leather": {
+      "id": "partial_leather",
+      "label": "Частично кожаная отделка",
+      "category": "materials",
+      "aliases": [
+        "Teilleder",
+        "Part leather"
+      ],
+      "description": "Комбинированная отделка, где кожа покрывает только часть поверхностей. Не равнозначна Vollleder.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "club_leather": {
+      "id": "club_leather",
+      "label": "Клубная кожа",
+      "category": "materials",
+      "aliases": [
+        "Clubleder",
+        "Club leather"
+      ],
+      "description": "Отдельный вариант кожаной отделки Clubleder. Цвет и набор отделанных поверхностей зависят от автомобиля.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "leather_wheel": {
+      "id": "leather_wheel",
+      "label": "Кожаный руль",
+      "category": "seats",
+      "aliases": [
+        "Leather steering wheel",
+        "Lederlenkrad"
+      ],
+      "description": "Рулевое колесо с кожаной отделкой. Подогрев руля — отдельная функция.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "multifunction_wheel": {
+      "id": "multifunction_wheel",
+      "label": "Мультируль",
+      "category": "seats",
+      "aliases": [
+        "Multi-function steering wheel",
+        "Multifunktionslenkrad"
+      ],
+      "description": "Кнопки на руле для управления функциями автомобиля и мультимедиа.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "lumbar": {
+      "id": "lumbar",
+      "label": "Поясничная поддержка",
+      "category": "seats",
+      "aliases": [
+        "Lumbar support",
+        "Lordosenstütze"
+      ],
+      "description": "Регулируемая поддержка поясницы. Число направлений и наличие функции у пассажира уточняются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "armrest": {
+      "id": "armrest",
+      "label": "Подлокотник",
+      "category": "seats",
+      "aliases": [
+        "Armrest",
+        "Armlehne"
+      ],
+      "description": "Подлокотник в салоне. Название не определяет наличие всех задних и передних подлокотников.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "split_rear_seats": {
+      "id": "split_rear_seats",
+      "label": "Раздельно складывающиеся задние сиденья",
+      "category": "seats",
+      "aliases": [
+        "Split rear seats"
+      ],
+      "description": "Заднее сиденье или спинки складываются раздельными секциями для перевозки багажа.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "fold_front_seat": {
+      "id": "fold_front_seat",
+      "label": "Складывающееся переднее пассажирское сиденье",
+      "category": "seats",
+      "aliases": [
+        "Umklappbarer Beifahrersitz"
+      ],
+      "description": "Указана складывающаяся спинка переднего пассажирского сиденья. Проверь применимость к конкретным сиденьям Cayenne.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "smoker_package": {
+      "id": "smoker_package",
+      "label": "Пакет для курящих",
+      "category": "seats",
+      "aliases": [
+        "Smoker's package",
+        "Raucherpaket"
+      ],
+      "description": "Пакет принадлежностей для курения. Не говорит о том, курили ли в салоне; это отдельное заявление продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "acc": {
+      "id": "acc",
+      "label": "Адаптивный круиз-контроль ACC",
+      "category": "assist",
+      "aliases": [
+        "Adaptive Cruise Control",
+        "Abstandstempomat",
+        "Abstandsregeltempomat",
+        "ACC"
+      ],
+      "description": "Адаптивный круиз-контроль регулирует скорость с учётом дистанции до автомобиля впереди. Не равнозначен обычному круиз-контролю или полному пакету InnoDrive.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "cruise": {
+      "id": "cruise",
+      "label": "Круиз-контроль",
+      "category": "assist",
+      "aliases": [
+        "Cruise control",
+        "Tempomat"
+      ],
+      "description": "Поддерживает заданную скорость. Если адаптивная функция не указана, автоматическое соблюдение дистанции не предполагается.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "innodrive": {
+      "id": "innodrive",
+      "label": "Porsche InnoDrive",
+      "category": "assist",
+      "aliases": [
+        "InnoDrive",
+        "Inno-Drive"
+      ],
+      "description": "Пакет помощи водителю Porsche InnoDrive с адаптивным управлением скоростью. Конкретные функции активного ведения по полосе зависят от версии. Это не автономное вождение.",
+      "finder_name": "Porsche InnoDrive inklusive Abstandsregeltempostat",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "camera_360": {
+      "id": "camera_360",
+      "label": "Камера 360° / Surround View",
+      "category": "assist",
+      "aliases": [
+        "360° camera",
+        "360°-Kamera",
+        "Surround View",
+        "Surround-View",
+        "camera 360°"
+      ],
+      "description": "Камеры формируют круговой обзор вокруг автомобиля. Отдельная камера заднего вида не означает наличие Surround View; автоматическая парковка тоже проверяется отдельно.",
+      "finder_name": "ParkAssistent vorne und hinten inkl. Rückfahrkamera und Surround View",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "rear_camera": {
+      "id": "rear_camera",
+      "label": "Камера заднего вида",
+      "category": "assist",
+      "aliases": [
+        "Parking assist system camera",
+        "Rückfahrkamera",
+        "rear view camera",
+        "RFK"
+      ],
+      "description": "Изображение пространства позади автомобиля для маневрирования. Не подтверждает круговой обзор 360° или автоматическое руление при парковке.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "park_sensors": {
+      "id": "park_sensors",
+      "label": "Парктроники",
+      "category": "assist",
+      "aliases": [
+        "Park Distance Control",
+        "Parkassistent",
+        "PDC"
+      ],
+      "description": "Датчики предупреждают о препятствиях при парковке. Наличие камер и автоматического руления не следует из слова ParkAssist.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "front_sensors": {
+      "id": "front_sensors",
+      "label": "Передние парктроники",
+      "category": "assist",
+      "aliases": [
+        "Parking assist system sensors front",
+        "Einparkhilfe vorne"
+      ],
+      "description": "Парковочные датчики спереди. Они не заменяют камеру и не подтверждают круговой обзор.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "rear_sensors": {
+      "id": "rear_sensors",
+      "label": "Задние парктроники",
+      "category": "assist",
+      "aliases": [
+        "Parking assist system sensors rear",
+        "Einparkhilfe hinten"
+      ],
+      "description": "Парковочные датчики сзади. Камера заднего вида — отдельный пункт.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "self_parking": {
+      "id": "self_parking",
+      "label": "Автоматическая парковка",
+      "category": "assist",
+      "aliases": [
+        "Parking assist system self-steering",
+        "Selbstlenkende Systeme",
+        "aktiver Park-Assistent"
+      ],
+      "description": "Система активной помощи при парковке может управлять рулением при манёвре. Наличие Surround View само по себе не доказывает эту функцию.",
+      "finder_name": "Aktive Einparkunterstützung",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "lane_warning": {
+      "id": "lane_warning",
+      "label": "Предупреждение о выходе из полосы",
+      "category": "assist",
+      "aliases": [
+        "Lane departure warning system"
+      ],
+      "description": "Предупреждает о выходе из полосы. Не всегда предусматривает активную коррекцию руления.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "lane_keep": {
+      "id": "lane_keep",
+      "label": "Удержание полосы",
+      "category": "assist",
+      "aliases": [
+        "Spurhalteassistent",
+        "Spurhalte-Assistent",
+        "Lane keeping assist"
+      ],
+      "description": "Помощь в удержании полосы, в том числе корректирующее рулевое воздействие в предусмотренных условиях. Требует контроля водителя.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "blind_spot": {
+      "id": "blind_spot",
+      "label": "Контроль слепых зон / смены полосы",
+      "category": "assist",
+      "aliases": [
+        "Blind spot monitor",
+        "Totwinkel-Assistent",
+        "Spurwechselassistent",
+        "Spurwechsel-Assistent"
+      ],
+      "description": "Контролирует соседние зоны и предупреждает об опасности при смене полосы. Отличается от удержания полосы.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "traffic_signs": {
+      "id": "traffic_signs",
+      "label": "Распознавание дорожных знаков",
+      "category": "assist",
+      "aliases": [
+        "Traffic sign recognition",
+        "Verkehrszeichenerkennung"
+      ],
+      "description": "Распознаёт дорожные знаки и показывает информацию водителю. Не гарантирует автоматическое изменение скорости.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "speed_limiter": {
+      "id": "speed_limiter",
+      "label": "Ограничитель скорости",
+      "category": "assist",
+      "aliases": [
+        "Speed limit control system",
+        "Geschwindigkeitsbegrenzer",
+        "Speedlimiter"
+      ],
+      "description": "Позволяет ограничить скорость заданным значением. Не равнозначен адаптивному круиз-контролю.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "night_vision": {
+      "id": "night_vision",
+      "label": "Ночное видение",
+      "category": "assist",
+      "aliases": [
+        "Night view assist",
+        "Nachtsicht-Assistent",
+        "Nachtsichtassistent"
+      ],
+      "description": "Помогает замечать объекты в темноте с помощью специальной системы ночного видения. Не следует из наличия матричных фар.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "exit_assist": {
+      "id": "exit_assist",
+      "label": "Ассистент выезда с парковки",
+      "category": "assist",
+      "aliases": [
+        "Ausparkassistent"
+      ],
+      "description": "Предупреждает об опасностях при выезде с парковки. Состав функций зависит от автомобиля.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "trailer_assist": {
+      "id": "trailer_assist",
+      "label": "Ассистент маневрирования с прицепом",
+      "category": "assist",
+      "aliases": [
+        "Anhängerrangierassistent"
+      ],
+      "description": "Помощь при маневрировании с прицепом. Само наличие фаркопа не подтверждает этот ассистент.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "hill_assist": {
+      "id": "hill_assist",
+      "label": "Помощь при трогании в гору",
+      "category": "assist",
+      "aliases": [
+        "Hill Holder",
+        "Berganfahrassistent"
+      ],
+      "description": "Помогает удержать автомобиль при трогании на уклоне.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "hud": {
+      "id": "hud",
+      "label": "Проекционный дисплей HUD",
+      "category": "assist",
+      "aliases": [
+        "Heads-up display",
+        "Head-Up Display",
+        "Head-Up",
+        "HeadUp",
+        "HUD"
+      ],
+      "description": "Проецирует важную информацию в поле зрения водителя. Не путать с цифровой приборной панелью или пассажирским дисплеем.",
+      "finder_name": "Head-Up Display",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "passenger_display": {
+      "id": "passenger_display",
+      "label": "Пассажирский дисплей",
+      "category": "media",
+      "aliases": [
+        "Beifahrerdisplay",
+        "Beifahrer-Display",
+        "Passenger display",
+        "Passanger Display"
+      ],
+      "description": "Отдельный дисплей для переднего пассажира. Это не основной центральный экран и не мониторы заднего ряда.",
+      "finder_name": "Beifahrerdisplay",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "bose": {
+      "id": "bose",
+      "label": "BOSE",
+      "category": "media",
+      "aliases": [
+        "BOSE"
+      ],
+      "description": "Аудиосистема BOSE, настроенная для автомобиля. Число динамиков и мощность зависят от модели. Общее слово Soundsystem не подтверждает BOSE.",
+      "finder_name": "BOSE Surround Sound-System",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "burmester": {
+      "id": "burmester",
+      "label": "Burmester",
+      "category": "media",
+      "aliases": [
+        "Burmester"
+      ],
+      "description": "Аудиосистема Burmester более высокого класса. Это отдельная система, а не разновидность или синоним BOSE. Параметры сверяются по конкретной комплектации.",
+      "finder_name": "Burmester High-End Surround Sound-System",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "sound_system": {
+      "id": "sound_system",
+      "label": "Аудиосистема (без уточнения бренда)",
+      "category": "media",
+      "aliases": [
+        "Sound system",
+        "Soundsystem"
+      ],
+      "description": "Общее упоминание аудиосистемы без точного бренда. BOSE и Burmester подтверждаются отдельными названиями.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "carplay": {
+      "id": "carplay",
+      "label": "Apple CarPlay",
+      "category": "media",
+      "aliases": [
+        "Apple CarPlay"
+      ],
+      "description": "Интеграция совместимого iPhone с мультимедийной системой. Проводной или беспроводной способ подключения зависит от версии.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "android_auto": {
+      "id": "android_auto",
+      "label": "Android Auto",
+      "category": "media",
+      "aliases": [
+        "Android Auto"
+      ],
+      "description": "Интеграция совместимого Android-смартфона с мультимедиа. Способ подключения следует проверить отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "navigation": {
+      "id": "navigation",
+      "label": "Навигация",
+      "category": "media",
+      "aliases": [
+        "Navigation system",
+        "Navigationssystem"
+      ],
+      "description": "Встроенная навигация. В Porsche она может быть частью PCM; актуальность карт и онлайн-сервисы уточняются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "navigation_prep": {
+      "id": "navigation_prep",
+      "label": "Подготовка под навигацию",
+      "category": "media",
+      "aliases": [
+        "Navigationsvorbereitung"
+      ],
+      "description": "Подготовка к установке или активации навигации. Не означает, что навигация уже работает.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wireless_charge": {
+      "id": "wireless_charge",
+      "label": "Беспроводная зарядка телефона",
+      "category": "media",
+      "aliases": [
+        "Induction charging for smartphones",
+        "Induktionsladen für Smartphones"
+      ],
+      "description": "Индукционная зарядка совместимого смартфона. Не подтверждает беспроводной CarPlay или Android Auto.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "bluetooth": {
+      "id": "bluetooth",
+      "label": "Bluetooth",
+      "category": "media",
+      "aliases": [
+        "Bluetooth"
+      ],
+      "description": "Беспроводное соединение телефона с автомобилем. Доступные профили звонков и аудио зависят от системы.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "handsfree": {
+      "id": "handsfree",
+      "label": "Громкая связь",
+      "category": "media",
+      "aliases": [
+        "Hands-free equipment",
+        "Freisprecheinrichtung"
+      ],
+      "description": "Функция громкой связи для телефонных разговоров.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "streaming": {
+      "id": "streaming",
+      "label": "Встроенные музыкальные сервисы",
+      "category": "media",
+      "aliases": [
+        "Integrated music streaming",
+        "Musikstreaming integriert"
+      ],
+      "description": "Встроенная поддержка потоковой музыки. Для отдельных сервисов могут требоваться аккаунт и подписка.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wifi": {
+      "id": "wifi",
+      "label": "Wi-Fi",
+      "category": "media",
+      "aliases": [
+        "WLAN / WiFi hotspot",
+        "WLAN / Wifi Hotspot",
+        "WLAN-Hotspot"
+      ],
+      "description": "Wi-Fi или точка доступа в автомобиле. Подключение к интернету и тариф на передачу данных проверяются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "usb": {
+      "id": "usb",
+      "label": "USB",
+      "category": "media",
+      "aliases": [
+        "USB"
+      ],
+      "description": "USB-порты для подключения устройств. Тип разъёмов и поддержка передачи данных зависят от исполнения.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "radio": {
+      "id": "radio",
+      "label": "Радио",
+      "category": "media",
+      "aliases": [
+        "Radio",
+        "Tuner/Radio"
+      ],
+      "description": "Радиоприёмник. Цифровое радио DAB указано отдельной опцией.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "dab": {
+      "id": "dab",
+      "label": "Цифровое радио DAB",
+      "category": "media",
+      "aliases": [
+        "Digital radio",
+        "Radio DAB",
+        "DAB"
+      ],
+      "description": "Приём цифрового радио DAB. Доступность станций зависит от региона.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "cd": {
+      "id": "cd",
+      "label": "CD-проигрыватель",
+      "category": "media",
+      "aliases": [
+        "CD player",
+        "CD-Spieler"
+      ],
+      "description": "Проигрыватель компакт-дисков. Для этой генерации автомобиля стоит проверить фактическое наличие устройства.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "mp3": {
+      "id": "mp3",
+      "label": "MP3",
+      "category": "media",
+      "aliases": [
+        "MP3"
+      ],
+      "description": "Указана поддержка аудиофайлов MP3. Это не отдельная премиальная аудиосистема.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "tv": {
+      "id": "tv",
+      "label": "Телевидение",
+      "category": "media",
+      "aliases": [
+        "TV",
+        "Television"
+      ],
+      "description": "Телевизионная функция мультимедиа. Доступность и ограничения работы уточняются у продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "touchscreen": {
+      "id": "touchscreen",
+      "label": "Сенсорный экран",
+      "category": "media",
+      "aliases": [
+        "Touch screen",
+        "Touchscreen"
+      ],
+      "description": "Сенсорное управление экраном. Само по себе не указывает на отдельный пассажирский дисплей.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "voice": {
+      "id": "voice",
+      "label": "Голосовое управление",
+      "category": "media",
+      "aliases": [
+        "Voice Control",
+        "Sprachsteuerung"
+      ],
+      "description": "Голосовое управление функциями автомобиля. Языки и доступные команды зависят от версии системы.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "digital_cockpit": {
+      "id": "digital_cockpit",
+      "label": "Цифровая приборная панель",
+      "category": "media",
+      "aliases": [
+        "Digital cockpit",
+        "Volldigitales Kombiinstrument"
+      ],
+      "description": "Цифровой дисплей приборной панели перед водителем. Не равнозначен проекционному дисплею HUD.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "computer": {
+      "id": "computer",
+      "label": "Бортовой компьютер",
+      "category": "media",
+      "aliases": [
+        "On-board computer",
+        "Bordcomputer"
+      ],
+      "description": "Бортовой компьютер с информацией о поездке и состоянии автомобиля.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "led": {
+      "id": "led",
+      "label": "Светодиодные фары",
+      "category": "lights",
+      "aliases": [
+        "LED Headlights",
+        "LED-Scheinwerfer",
+        "Full-LED headlights"
+      ],
+      "description": "Светодиодные фары. Не все LED-фары являются матричными; HD-Matrix выделены отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "matrix_led": {
+      "id": "matrix_led",
+      "label": "Матричные LED-фары",
+      "category": "lights",
+      "aliases": [
+        "Matrix-LED",
+        "Matrix LED",
+        "LED-Matrix",
+        "Matrix-Scheinwerfer"
+      ],
+      "description": "Матричная светодиодная система управляет участками светового пучка. Это более конкретный тип, чем просто LED, но не обязательно HD-Matrix.",
+      "finder_name": "LED-Matrix-Scheinwerfer",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "hd_matrix": {
+      "id": "hd_matrix",
+      "label": "HD-Matrix LED-фары",
+      "category": "lights",
+      "aliases": [
+        "HD-Matrix",
+        "HD Matrix"
+      ],
+      "description": "HD-Matrix LED — отдельное высокоразрешающее исполнение матричных фар. Общее упоминание Matrix LED не подтверждает именно HD-версию.",
+      "finder_name": "HD-Matrix LED-Hauptscheinwerfer",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "xenon": {
+      "id": "xenon",
+      "label": "Ксеноновые фары",
+      "category": "lights",
+      "aliases": [
+        "Xenon headlights"
+      ],
+      "description": "Ксеноновые фары. Для объявлений этой генерации Cayenne проверь, не является ли отметка ошибкой продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "bi_xenon": {
+      "id": "bi_xenon",
+      "label": "Биксеноновые фары",
+      "category": "lights",
+      "aliases": [
+        "Bi-Xenon headlights"
+      ],
+      "description": "Биксеноновое исполнение фар. Не объединяется с LED или HD-Matrix; применимость к конкретной машине нужно проверить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "laser": {
+      "id": "laser",
+      "label": "Лазерные фары (проверить)",
+      "category": "other",
+      "aliases": [
+        "Laser headlights",
+        "Laserlicht"
+      ],
+      "description": "Лазерный свет указан в исходном объявлении. Для Cayenne это подозрительный пункт классификатора: не считаем его эквивалентом HD-Matrix.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "adaptive_lights": {
+      "id": "adaptive_lights",
+      "label": "Адаптивное освещение поворотов",
+      "category": "lights",
+      "aliases": [
+        "Adaptive headlights",
+        "Adaptives Kurvenlicht"
+      ],
+      "description": "Свет адаптируется при прохождении поворотов. Название не подтверждает конкретную технологию Matrix или HD-Matrix.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "cornering_lights": {
+      "id": "cornering_lights",
+      "label": "Подсветка поворотов",
+      "category": "lights",
+      "aliases": [
+        "Kurvenlicht"
+      ],
+      "description": "Дополнительное освещение зоны поворота. Отличается от полноценной адаптивной или матричной системы.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "high_beam": {
+      "id": "high_beam",
+      "label": "Автоматический дальний свет",
+      "category": "lights",
+      "aliases": [
+        "High beam assist",
+        "Fernlichtassistent"
+      ],
+      "description": "Автоматическое переключение дальнего света. Не обязательно включает выборочное затемнение отдельных участков пучка.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "anti_glare_beam": {
+      "id": "anti_glare_beam",
+      "label": "Неослепляющий дальний свет",
+      "category": "lights",
+      "aliases": [
+        "Glare-free high beam headlights",
+        "Blendfreies Fernlicht"
+      ],
+      "description": "Дальний свет с функцией уменьшения ослепления других участников. Само название не подтверждает конкретное исполнение HD-Matrix.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "fog_lights": {
+      "id": "fog_lights",
+      "label": "Противотуманные фары",
+      "category": "lights",
+      "aliases": [
+        "Fog lights",
+        "Nebelscheinwerfer"
+      ],
+      "description": "Отдельная функция противотуманного освещения. Наличие нужно сверить с реальными фарами автомобиля.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "drl": {
+      "id": "drl",
+      "label": "Дневные ходовые огни",
+      "category": "lights",
+      "aliases": [
+        "Daytime running lights",
+        "Tagfahrlicht"
+      ],
+      "description": "Дневные ходовые огни. Тип источника света уточняется отдельным пунктом.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "led_drl": {
+      "id": "led_drl",
+      "label": "Светодиодные ДХО",
+      "category": "lights",
+      "aliases": [
+        "LED Daytime Running Lights",
+        "LED-Tagfahrlicht"
+      ],
+      "description": "Дневные ходовые огни на светодиодах.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "light_sensor": {
+      "id": "light_sensor",
+      "label": "Датчик света",
+      "category": "lights",
+      "aliases": [
+        "Light sensor",
+        "Lichtsensor"
+      ],
+      "description": "Автоматически реагирует на освещённость и управляет включением света.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "rain_sensor": {
+      "id": "rain_sensor",
+      "label": "Датчик дождя",
+      "category": "lights",
+      "aliases": [
+        "Rain sensor",
+        "Regensensor"
+      ],
+      "description": "Автоматически реагирует на дождь и регулирует работу стеклоочистителей.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "headlight_wash": {
+      "id": "headlight_wash",
+      "label": "Омыватели фар",
+      "category": "lights",
+      "aliases": [
+        "Headlight washer system",
+        "Scheinwerferreinigung"
+      ],
+      "description": "Система очистки фар жидкостью.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "tinted": {
+      "id": "tinted",
+      "label": "Затемнённые стёкла / Privacy",
+      "category": "lights",
+      "aliases": [
+        "Tinted windows",
+        "Abgedunkelte Scheiben",
+        "Privacy-Verglasung",
+        "Privacy glass"
+      ],
+      "description": "Затемнённое остекление Privacy. Само по себе не подтверждает шумоизоляционное или многослойное стекло.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "electric_mirrors": {
+      "id": "electric_mirrors",
+      "label": "Электрорегулировка зеркал",
+      "category": "lights",
+      "aliases": [
+        "Electrical side mirrors",
+        "Elektr. Seitenspiegel"
+      ],
+      "description": "Электрическая регулировка наружных зеркал. Складывание и автозатемнение проверяются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "folding_mirrors": {
+      "id": "folding_mirrors",
+      "label": "Электроскладывание зеркал",
+      "category": "lights",
+      "aliases": [
+        "Elektr. Seitenspiegel anklappbar"
+      ],
+      "description": "Электропривод складывания наружных зеркал.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "mirror_dimming": {
+      "id": "mirror_dimming",
+      "label": "Автозатемнение салонного зеркала",
+      "category": "lights",
+      "aliases": [
+        "Automatically dimming interior mirror",
+        "Innenspiegel autom. abblendend"
+      ],
+      "description": "Автоматическое затемнение салонного зеркала против ослепления. Не подтверждает аналогичную функцию всех наружных зеркал.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "abs": {
+      "id": "abs",
+      "label": "ABS",
+      "category": "safety",
+      "aliases": [
+        "ABS"
+      ],
+      "description": "Антиблокировочная система помогает сохранить управляемость при интенсивном торможении. Это не отдельный пакет Porsche Active Safe.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "esp": {
+      "id": "esp",
+      "label": "Система стабилизации ESP",
+      "category": "safety",
+      "aliases": [
+        "Electronic stability control",
+        "ESP"
+      ],
+      "description": "Система стабилизации помогает контролировать траекторию автомобиля. Не заменяет PDCC или другие системы шасси.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "traction": {
+      "id": "traction",
+      "label": "Антипробуксовочная система",
+      "category": "safety",
+      "aliases": [
+        "Traction control",
+        "Traktionskontrolle"
+      ],
+      "description": "Антипробуксовочная система уменьшает избыточное проскальзывание ведущих колёс.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "emergency_brake": {
+      "id": "emergency_brake",
+      "label": "Экстренное торможение",
+      "category": "safety",
+      "aliases": [
+        "Emergency brake assistant",
+        "Notbremsassistent"
+      ],
+      "description": "Система помощи при экстренном торможении. Тип обнаружения препятствий и условия автоматического вмешательства зависят от версии.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "emergency_call": {
+      "id": "emergency_call",
+      "label": "Экстренный вызов",
+      "category": "safety",
+      "aliases": [
+        "Emergency system",
+        "Notrufsystem"
+      ],
+      "description": "Система экстренного вызова помощи. Работа сервиса может зависеть от связи и региона.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "distance_warning": {
+      "id": "distance_warning",
+      "label": "Предупреждение о дистанции",
+      "category": "safety",
+      "aliases": [
+        "Distance warning system",
+        "Abstandswarner"
+      ],
+      "description": "Предупреждает о недостаточной дистанции. Не обязательно умеет управлять скоростью как ACC.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "drowsiness": {
+      "id": "drowsiness",
+      "label": "Контроль усталости водителя",
+      "category": "safety",
+      "aliases": [
+        "Driver drowsiness detection",
+        "Müdigkeitswarner"
+      ],
+      "description": "Предупреждает о признаках усталости водителя. Не заменяет отдых и контроль дороги.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "alarm": {
+      "id": "alarm",
+      "label": "Сигнализация",
+      "category": "safety",
+      "aliases": [
+        "Alarm system",
+        "Alarmanlage"
+      ],
+      "description": "Охранная сигнализация. Она не равнозначна системе слежения за автомобилем PVTS.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "immobilizer": {
+      "id": "immobilizer",
+      "label": "Иммобилайзер",
+      "category": "safety",
+      "aliases": [
+        "Immobilizer",
+        "Elektr. Wegfahrsperre"
+      ],
+      "description": "Блокирует неавторизованный запуск двигателя.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "airbag_driver": {
+      "id": "airbag_driver",
+      "label": "Подушка водителя",
+      "category": "safety",
+      "aliases": [
+        "Driver-side airbag"
+      ],
+      "description": "Фронтальная подушка безопасности водителя.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "airbag_passenger": {
+      "id": "airbag_passenger",
+      "label": "Подушка переднего пассажира",
+      "category": "safety",
+      "aliases": [
+        "Passenger-side airbag"
+      ],
+      "description": "Фронтальная подушка переднего пассажира. Возможность отключения проверяется отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "airbag_side": {
+      "id": "airbag_side",
+      "label": "Боковые подушки",
+      "category": "safety",
+      "aliases": [
+        "Side airbag"
+      ],
+      "description": "Боковые подушки безопасности. Их расположение по рядам не определяется этим общим названием.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "airbag_head": {
+      "id": "airbag_head",
+      "label": "Шторки безопасности",
+      "category": "safety",
+      "aliases": [
+        "Head airbag"
+      ],
+      "description": "Подушки-шторки для защиты головы при боковом воздействии.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "airbag_rear": {
+      "id": "airbag_rear",
+      "label": "Задние подушки безопасности",
+      "category": "safety",
+      "aliases": [
+        "Rear airbag"
+      ],
+      "description": "В объявлении указаны дополнительные подушки для заднего ряда. Конкретное расположение следует уточнить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "isofix": {
+      "id": "isofix",
+      "label": "ISOFIX",
+      "category": "safety",
+      "aliases": [
+        "Isofix"
+      ],
+      "description": "Крепления для совместимых детских кресел. Расположение креплений на переднем сиденье проверяется отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "isofix_front": {
+      "id": "isofix_front",
+      "label": "ISOFIX спереди",
+      "category": "safety",
+      "aliases": [
+        "Isofix Beifahrersitz"
+      ],
+      "description": "ISOFIX на переднем пассажирском сиденье. Не следует из общего упоминания ISOFIX.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "tpms": {
+      "id": "tpms",
+      "label": "Контроль давления в шинах",
+      "category": "safety",
+      "aliases": [
+        "Tire pressure monitoring system",
+        "Reifendruckkontrolle"
+      ],
+      "description": "Контроль давления в шинах с предупреждением об отклонениях.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "electric_brake": {
+      "id": "electric_brake",
+      "label": "Электронный стояночный тормоз",
+      "category": "safety",
+      "aliases": [
+        "Electronic parking brake"
+      ],
+      "description": "Стояночный тормоз с электрическим управлением.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "paddles": {
+      "id": "paddles",
+      "label": "Подрулевые лепестки",
+      "category": "chassis",
+      "aliases": [
+        "Shift paddles",
+        "Schaltwippen"
+      ],
+      "description": "Лепестки на руле для ручного выбора передач.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "start_stop": {
+      "id": "start_stop",
+      "label": "Старт-стоп",
+      "category": "chassis",
+      "aliases": [
+        "Start-stop system",
+        "Start/Stopp-Automatik"
+      ],
+      "description": "Автоматическое выключение и повторный запуск двигателя при остановках в подходящих условиях.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "trailer_hitch": {
+      "id": "trailer_hitch",
+      "label": "Фаркоп",
+      "category": "exterior",
+      "aliases": [
+        "Trailer hitch",
+        "Anhängerkupplung",
+        "Anhaengerkupplung",
+        "AHK"
+      ],
+      "description": "Установленное буксировочное устройство. Подготовка под фаркоп не считается его наличием.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "trailer_fixed": {
+      "id": "trailer_fixed",
+      "label": "Несъёмный фаркоп",
+      "category": "exterior",
+      "aliases": [
+        "Anhängerkupplung fest"
+      ],
+      "description": "Несъёмное буксировочное устройство по формулировке объявления. Проверь фактическое исполнение.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "trailer_pivot": {
+      "id": "trailer_pivot",
+      "label": "Поворотный фаркоп",
+      "category": "exterior",
+      "aliases": [
+        "Anhängerkupplung schwenkbar"
+      ],
+      "description": "Фаркоп поворотного или убираемого исполнения. Электрический привод должен быть указан отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "trailer_prep": {
+      "id": "trailer_prep",
+      "label": "Подготовка под фаркоп",
+      "category": "exterior",
+      "aliases": [
+        "Anhängerkupplung-Vorbereitung"
+      ],
+      "description": "Подготовка под буксировочное устройство. Сам фаркоп может отсутствовать.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "roof_rails": {
+      "id": "roof_rails",
+      "label": "Рейлинги",
+      "category": "exterior",
+      "aliases": [
+        "Dachreling"
+      ],
+      "description": "Продольные рейлинги на крыше для установки совместимых багажных систем. Не означают наличие поперечин или бокса.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "roof_rack": {
+      "id": "roof_rack",
+      "label": "Багажник на крыше",
+      "category": "exterior",
+      "aliases": [
+        "Roof rack"
+      ],
+      "description": "Указана багажная система на крыше. Её состав и включение в цену уточняются у продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "cargo_barrier": {
+      "id": "cargo_barrier",
+      "label": "Перегородка багажника",
+      "category": "exterior",
+      "aliases": [
+        "Cargo barrier",
+        "Gepäckraumabtrennung"
+      ],
+      "description": "Перегородка или разделительная сетка между багажником и салоном.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "ski_bag": {
+      "id": "ski_bag",
+      "label": "Чехол для лыж",
+      "category": "exterior",
+      "aliases": [
+        "Ski bag",
+        "Skisack"
+      ],
+      "description": "Чехол или система перевозки лыж в салоне.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "spoiler": {
+      "id": "spoiler",
+      "label": "Спойлер",
+      "category": "exterior",
+      "aliases": [
+        "Spoiler"
+      ],
+      "description": "Аэродинамический элемент кузова. Не подтверждает полный пакет SportDesign.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "spare_tyre": {
+      "id": "spare_tyre",
+      "label": "Запасное колесо",
+      "category": "wheels",
+      "aliases": [
+        "Spare tyre"
+      ],
+      "description": "Запасное колесо. Его размер и состояние проверяются отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "space_saver": {
+      "id": "space_saver",
+      "label": "Докатка",
+      "category": "wheels",
+      "aliases": [
+        "Notrad"
+      ],
+      "description": "Компактное временное запасное колесо с ограничениями по эксплуатации.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "repair_kit": {
+      "id": "repair_kit",
+      "label": "Комплект ремонта шин",
+      "category": "wheels",
+      "aliases": [
+        "Emergency tyre repair kit",
+        "Pannenkit"
+      ],
+      "description": "Комплект для временного ремонта шины. Не означает наличие запасного колеса.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "particle_filter": {
+      "id": "particle_filter",
+      "label": "Сажевый фильтр",
+      "category": "chassis",
+      "aliases": [
+        "Particle filter",
+        "Partikelfilter"
+      ],
+      "description": "Фильтр частиц в выпускной системе. Не связан с очисткой воздуха в салоне.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "catalyst": {
+      "id": "catalyst",
+      "label": "Катализатор",
+      "category": "chassis",
+      "aliases": [
+        "Catalytic Converter"
+      ],
+      "description": "Каталитический нейтрализатор в выпускной системе.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "e10": {
+      "id": "e10",
+      "label": "Совместимость с E10",
+      "category": "chassis",
+      "aliases": [
+        "E10-enabled"
+      ],
+      "description": "Указана совместимость топлива с бензином E10. Требования производителя к конкретному двигателю нужно соблюдать отдельно.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "warranty": {
+      "id": "warranty",
+      "label": "Гарантия (условия у продавца)",
+      "category": "history",
+      "aliases": [
+        "Garantie",
+        "Warranty"
+      ],
+      "description": "Продавец упоминает гарантию. Необходимо уточнить срок, покрытие, исключения и включена ли она в цену.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "approved": {
+      "id": "approved",
+      "label": "Porsche Approved — упоминание",
+      "category": "history",
+      "aliases": [
+        "Porsche Approved",
+        "Approved-Garantie"
+      ],
+      "description": "Упоминание Porsche Approved. Это не доказательство действующего гарантийного покрытия: проверь документ, срок и условия для конкретной машины.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "service_history": {
+      "id": "service_history",
+      "label": "Сервисная история",
+      "category": "history",
+      "aliases": [
+        "Scheckheftgepflegt",
+        "Full service history"
+      ],
+      "description": "Продавец заявляет о сервисной истории. Нужны записи и документы; само упоминание не доказывает обслуживание исключительно у Porsche.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "non_smoker": {
+      "id": "non_smoker",
+      "label": "В салоне не курили — заявление",
+      "category": "history",
+      "aliases": [
+        "Nichtraucher-Fahrzeug",
+        "Nichtraucher"
+      ],
+      "description": "Заявление продавца о том, что в салоне не курили. Не является независимой проверкой состояния.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "inspection_new": {
+      "id": "inspection_new",
+      "label": "Новое ТО / инспекция",
+      "category": "history",
+      "aliases": [
+        "Inspektion neu"
+      ],
+      "description": "Указано свежее ТО или инспекция. Уточни дату, пробег и выполненные работы.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "awning": {
+      "id": "awning",
+      "label": "Маркиза (проверить)",
+      "category": "other",
+      "aliases": [
+        "Awning"
+      ],
+      "description": "Маркиза указана в исходном списке. Пункт нетипичен для Cayenne и требует проверки, а не автоматического признания комплектацией.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "biodiesel": {
+      "id": "biodiesel",
+      "label": "Переоборудование под биодизель (проверить)",
+      "category": "other",
+      "aliases": [
+        "Biodiesel conversion"
+      ],
+      "description": "В исходнике отмечено переоборудование под биодизель. Для бензинового V8 это противоречивое поле, которое нужно уточнять у продавца.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "heat_pump": {
+      "id": "heat_pump",
+      "label": "Тепловой насос (проверить)",
+      "category": "other",
+      "aliases": [
+        "Heat Pump"
+      ],
+      "description": "Тепловой насос указан в исходнике. Для этой подборки бензиновых Cayenne такой пункт требует отдельной проверки.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "sliding_door": {
+      "id": "sliding_door",
+      "label": "Сдвижная дверь (проверить)",
+      "category": "other",
+      "aliases": [
+        "Sliding door"
+      ],
+      "description": "Сдвижная дверь отмечена продавцом. Это нетипично для Cayenne и может быть ошибкой классификатора.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "tuned": {
+      "id": "tuned",
+      "label": "Тюнинг",
+      "category": "other",
+      "aliases": [
+        "Tuned car"
+      ],
+      "description": "Продавец указывает тюнинг. Состав изменений, документы и влияние на гарантию необходимо проверить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "wind_deflector": {
+      "id": "wind_deflector",
+      "label": "Ветрозащитный экран (проверить)",
+      "category": "other",
+      "aliases": [
+        "Wind deflector"
+      ],
+      "description": "Ветрозащитный экран указан в исходнике. Назначение и применимость к данному Cayenne следует уточнить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "ptv": {
+      "id": "ptv",
+      "label": "Распределение тяги Porsche PTV",
+      "category": "chassis",
+      "aliases": [
+        "Porsche Torque Vectoring",
+        "PTV"
+      ],
+      "description": "Porsche Torque Vectoring — система управления распределением тяги на задней оси. Запись PTV без уточнения не подтверждает конкретную версию Plus.",
+      "finder_name": "Porsche Torque Vectoring (PTV/Hinterachs-Quersperre)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "ptv_plus": {
+      "id": "ptv_plus",
+      "label": "Porsche Torque Vectoring Plus",
+      "category": "chassis",
+      "aliases": [
+        "Porsche Torque Vectoring Plus",
+        "PTV Plus",
+        "PTV+"
+      ],
+      "description": "Версия Porsche Torque Vectoring Plus. Система связана с управлением тягой и блокировкой заднего дифференциала; не равнозначна подруливанию задней оси или PDCC.",
+      "finder_name": "Porsche Torque Vectoring Plus (PTV Plus)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "pscb": {
+      "id": "pscb",
+      "label": "Тормоза Porsche PSCB",
+      "category": "chassis",
+      "aliases": [
+        "Porsche Surface Coated Brake",
+        "PSCB"
+      ],
+      "description": "Porsche Surface Coated Brake — тормозные диски со специальным покрытием. Не путать с карбон-керамическими PCCB.",
+      "finder_name": "Porsche Surface Coated Brake (PSCB)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "acoustic_glass": {
+      "id": "acoustic_glass",
+      "label": "Шумо- и теплоизоляционное остекление",
+      "category": "lights",
+      "aliases": [
+        "Geräusch- und Wärmeschutzverglasung",
+        "Geräuschschutzverglasung",
+        "Akustikverglasung",
+        "thermally and noise insulated glass"
+      ],
+      "description": "Специальное шумо- и теплоизоляционное остекление. Оно отличается от простого затемнения Privacy.",
+      "finder_name": "Geräusch- und Wärmeschutzverglasung",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "homelink": {
+      "id": "homelink",
+      "label": "Управление воротами HomeLink",
+      "category": "assist",
+      "aliases": [
+        "HomeLink",
+        "Garagentoröffner"
+      ],
+      "description": "Система управления совместимыми гаражными воротами. Требует совместимости с конкретным приводом ворот.",
+      "finder_name": "HomeLink (Garagentoröffner)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "ionizer": {
+      "id": "ionizer",
+      "label": "Ионизатор / система качества воздуха",
+      "category": "assist",
+      "aliases": [
+        "Ionisator",
+        "Ionizer",
+        "Luftgütesystem"
+      ],
+      "description": "Указан ионизатор или система улучшения качества воздуха в салоне. Точный состав системы зависит от исполнения.",
+      "finder_name": "Ionisator",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "traffic_jam": {
+      "id": "traffic_jam",
+      "label": "Ассистент движения в пробке",
+      "category": "assist",
+      "aliases": [
+        "Stauassistent",
+        "Stau-Assistent",
+        "traffic jam assist"
+      ],
+      "description": "Ассистент движения в пробке помогает в предусмотренных режимах медленного трафика. Не является автономным вождением.",
+      "finder_name": "Stauassistent",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "carbon_roof": {
+      "id": "carbon_roof",
+      "label": "Облегчённая карбоновая крыша",
+      "category": "exterior",
+      "aliases": [
+        "Leichtbaudach Carbon",
+        "Lightweight carbon roof",
+        "Dach Carbon"
+      ],
+      "description": "Облегчённая крыша из углепластика. Не равнозначна карбоновому декору салона или панорамной крыше.",
+      "finder_name": "Leichtbaudach Carbon",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "large_tank": {
+      "id": "large_tank",
+      "label": "Топливный бак увеличенного объёма",
+      "category": "chassis",
+      "aliases": [
+        "Kraftstofftank mit erhöhtem Tankvolumen",
+        "Kraftstofftank 90 Liter",
+        "Kraftstofftank: 90 Liter",
+        "90-Liter-Tank",
+        "90 Liter Tank"
+      ],
+      "description": "Бак увеличенного объёма. Если литраж не указан явно, его нельзя определять только по названию опции.",
+      "finder_name": "Kraftstofftank mit erhöhtem Tankvolumen",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "rear_entertainment": {
+      "id": "rear_entertainment",
+      "label": "Мультимедиа для задних пассажиров",
+      "category": "media",
+      "aliases": [
+        "Porsche Rear Seat Entertainment",
+        "Rear Seat Entertainment"
+      ],
+      "description": "Развлекательная система для пассажиров заднего ряда. Не путать с дисплеем переднего пассажира.",
+      "finder_name": "Porsche Rear Seat Entertainment",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    },
+    "rear_vent": {
+      "id": "rear_vent",
+      "label": "Вентиляция задних сидений",
+      "category": "seats",
+      "aliases": [
+        "Sitzbelüftung vorne und hinten",
+        "Sitzbelüftung hinten",
+        "rear seat ventilation"
+      ],
+      "description": "Явно указана вентиляция задних сидений. Общее слово «вентиляция сидений» этого не подтверждает.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "rear_blinds": {
+      "id": "rear_blinds",
+      "label": "Электрошторки задних боковых окон",
+      "category": "seats",
+      "aliases": [
+        "Sonnenrollos für Fondseitenfenster elektrisch",
+        "Sonnenrollo an Heckscheibe elektrisch und an Seitenscheiben",
+        "Sonnenrollos hinten elektrisch"
+      ],
+      "description": "Электрические шторки задних окон. Они не заменяют и не подтверждают остекление Privacy.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "luggage_management": {
+      "id": "luggage_management",
+      "label": "Система организации багажника",
+      "category": "exterior",
+      "aliases": [
+        "Laderaummanagement",
+        "Laderaum-Management",
+        "loadspace management"
+      ],
+      "description": "Система фиксации и организации груза в багажнике. Конкретные крепления и аксессуары нужно проверить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "pvts": {
+      "id": "pvts",
+      "label": "Система слежения за автомобилем PVTS",
+      "category": "safety",
+      "aliases": [
+        "Porsche Vehicle Tracking System",
+        "PVTS"
+      ],
+      "description": "Porsche Vehicle Tracking System — система отслеживания автомобиля. Работа услуг может зависеть от активации и подписки.",
+      "finder_name": "Porsche Vehicle Tracking System (PVTS)",
+      "reference_url": "https://finder.porsche.com/de/de-DE/search/cayenne?model=cayenne&model-generation=92ya-2&condition=used&minimum-registration-date=2023&maximum-registration-date=2024&order=price_asc&maximum-mileage=70000&category=cayenne-s&category=cayenne-gts&category=cayenne-s-coupe&category=cayenne-gts-coupe&equipment=rear-axle-steering&equipment=pdcc"
+    }
+  },
+  "parents": {
+    "climate_2": [
+      "climate"
+    ],
+    "climate_3": [
+      "climate"
+    ],
+    "climate_4": [
+      "climate"
+    ],
+    "climate": [
+      "ac"
+    ],
+    "bose": [
+      "sound_system"
+    ],
+    "burmester": [
+      "sound_system"
+    ],
+    "hd_matrix": [
+      "matrix_led"
+    ],
+    "matrix_led": [
+      "led"
+    ],
+    "bi_xenon": [
+      "xenon"
+    ],
+    "led_drl": [
+      "drl"
+    ],
+    "pasm": [
+      "adaptive_suspension"
+    ],
+    "sport_design": [
+      "sport_design_elements"
+    ],
+    "rear_seat_heat": [
+      "seat_heat"
+    ],
+    "seats_14": [
+      "electric_seats"
+    ],
+    "seats_18": [
+      "electric_seats"
+    ],
+    "seat_memory": [
+      "electric_seats"
+    ],
+    "full_leather": [
+      "leather_seats"
+    ],
+    "partial_leather": [
+      "leather_seats"
+    ],
+    "club_leather": [
+      "leather_seats"
+    ],
+    "folding_mirrors": [
+      "electric_mirrors"
+    ],
+    "isofix_front": [
+      "isofix"
+    ],
+    "front_sensors": [
+      "park_sensors"
+    ],
+    "rear_sensors": [
+      "park_sensors"
+    ],
+    "trailer_fixed": [
+      "trailer_hitch"
+    ],
+    "trailer_pivot": [
+      "trailer_hitch"
+    ],
+    "remote_lock": [
+      "central_lock"
+    ],
+    "keyless": [
+      "central_lock"
+    ],
+    "wheels_20": [
+      "alloy_wheels"
+    ],
+    "wheels_21": [
+      "alloy_wheels"
+    ],
+    "wheels_22": [
+      "alloy_wheels"
+    ],
+    "ptv_plus": [
+      "ptv"
+    ],
+    "rear_vent": [
+      "seat_vent"
+    ]
+  },
+  "categories": {
+    "packages": "Пакеты оснащения",
+    "exterior": "Экстерьер",
+    "chassis": "Двигатель, трансмиссия и шасси",
+    "wheels": "Колёса и шины",
+    "seats": "Интерьер",
+    "materials": "Материалы салона",
+    "media": "Аудио и связь",
+    "lights": "Свет и обзор",
+    "assist": "Комфорт и ассистенты",
+    "safety": "Безопасность",
+    "history": "История и гарантия",
+    "other": "Прочее / проверить"
+  },
+  "priority": [
+    "air_suspension",
+    "rear_steering",
+    "pdcc",
+    "sport_chrono",
+    "sport_design",
+    "sports_exhaust",
+    "panorama",
+    "bose",
+    "burmester",
+    "hud",
+    "passenger_display",
+    "camera_360",
+    "innodrive",
+    "hd_matrix",
+    "soft_close",
+    "seat_vent",
+    "seat_massage",
+    "seats_18",
+    "aux_heating",
+    "trailer_hitch",
+    "ptv_plus",
+    "acoustic_glass"
+  ]
+}

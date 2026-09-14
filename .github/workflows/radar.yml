@@ -1,0 +1,80 @@
+name: Inventory radar and Pages
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: Check AutoScout24 before publishing
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - app.js
+      - style.css
+      - data.json
+      - radar.json
+      - .nojekyll
+      - .github/scripts/**
+      - .github/workflows/radar.yml
+permissions:
+  contents: read
+concurrency:
+  group: cayenne-radar-pages
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+      - name: Validate monitor and frontend
+        run: |
+          python3 .github/scripts/test_monitor.py
+          node --check app.js
+      - name: Refresh AutoScout24 and persist history
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh)
+        env:
+          GIT_AUTHOR_NAME: Cayenne Radar
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: Cayenne Radar
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          python3 .github/scripts/monitor.py
+          git add data.json radar.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh inventory radar and price history" -m "Generated with [Devin](https://devin.ai)" -m "Co-Authored-By: Devin <158243242+devin-ai-integration[bot]@users.noreply.github.com>"
+            git push origin HEAD:main
+          fi
+      - name: Package public files only
+        run: |
+          python3 - <<'PY'
+          import pathlib, shutil
+          output = pathlib.Path('_site')
+          output.mkdir(exist_ok=True)
+          for name in ['index.html', 'app.js', 'style.css', 'data.json', 'radar.json', '.nojekyll']:
+              shutil.copy2(name, output / name)
+          PY
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: _site
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

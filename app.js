@@ -8,8 +8,8 @@ const number = value => value === null || value === undefined || value === '' ? 
 const money = value => value == null ? 'Цена не указана' : `${number(value)} €`;
 const countries = {DE: 'Германия', IT: 'Италия', BE: 'Бельгия', FR: 'Франция', NL: 'Нидерланды', LU: 'Люксембург', SK: 'Словакия', RO: 'Румыния', ES: 'Испания', LT: 'Литва', LV: 'Латвия', AT: 'Австрия'};
 const kinds = {equipment: 'Список оборудования', attribute: 'Характеристики', description: 'Описание продавца', title: 'Заголовок объявления'};
-const fields = ['search', 'price-min', 'price-max', 'mileage-min', 'mileage-max', 'year', 'country', 'source', 'hide-accident', 'verified-v8', 'duplicates', 'luxury-min', 'evidence', 'sort'];
-const defaults = {'search': '', 'price-min': '', 'price-max': '', 'mileage-min': '', 'mileage-max': '', year: '', country: '', source: '', 'hide-accident': false, 'verified-v8': false, duplicates: false, 'luxury-min': '', evidence: 'all', sort: 'price-asc', mode: 'all', options: []};
+const fields = ['search', 'price-min', 'price-max', 'mileage-min', 'mileage-max', 'year', 'country', 'source', 'hide-accident', 'verified-v8', 'duplicates', 'updates', 'hide-unavailable', 'luxury-min', 'evidence', 'sort'];
+const defaults = {'search': '', 'price-min': '', 'price-max': '', 'mileage-min': '', 'mileage-max': '', year: '', country: '', source: '', 'hide-accident': false, 'verified-v8': false, duplicates: false, updates: '', 'hide-unavailable': false, 'luxury-min': '', evidence: 'all', sort: 'price-asc', mode: 'all', options: []};
 let dataset;
 let cars = [];
 let catalogue = [];
@@ -77,6 +77,56 @@ function saveHash(state) {
 
 function featureIds(car, evidenceMode) {
   return evidenceMode === 'structured' ? car.structuredIds : car.optionIds;
+}
+
+let radar = null;
+
+function recent(timestamp, reference = Date.now()) {
+  const at = Date.parse(timestamp ?? '');
+  return Number.isFinite(at) && at <= reference && reference - at <= 7 * 86400000;
+}
+
+function tracking(car) {
+  return radar?.listings?.[car.id];
+}
+
+function monitorMatch(car, state) {
+  const track = tracking(car);
+  if (state['hide-unavailable'] && track?.status === 'not_found') return false;
+  if (state.updates === 'new') return !!track && !track.baseline && recent(track.first_seen);
+  if (state.updates === 'price_drop') return recent(track?.last_price_drop_at);
+  if (state.updates === 'not_found') return track?.status === 'not_found';
+  return true;
+}
+
+function dateTime(value) {
+  return value ? new Date(value).toLocaleString('ru-RU', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}) : 'ещё не было';
+}
+
+function monitorBadges(car) {
+  const track = tracking(car);
+  if (!track) return '';
+  return `${track.status === 'not_found' ? '<span class="badge danger">Не найдено в поиске</span>' : ''}${!track.baseline && recent(track.first_seen) ? '<span class="badge new">Новое · 7 дней</span>' : ''}${recent(track.last_price_drop_at) ? '<span class="badge drop">Цена снижалась</span>' : ''}${track.status === 'snapshot' ? '<span class="badge">Снимок · без автообновления</span>' : ''}`;
+}
+
+function renderRadar() {
+  const panel = $('#radar-panel');
+  if (!radar) {
+    panel.innerHTML = '<h2>Радар объявлений</h2><p>История мониторинга сейчас недоступна. Показаны сохранённые объявления.</p>';
+    return;
+  }
+  const newCount = cars.filter(car => monitorMatch(car, {updates: 'new'})).length;
+  const dropCount = cars.filter(car => monitorMatch(car, {updates: 'price_drop'})).length;
+  const labels = {new: 'Новое объявление', price_drop: 'Снижение цены', price_increase: 'Повышение цены', not_found: 'Не найдено в поиске', returned: 'Снова найдено'};
+  const events = radar.events.slice(0, 15);
+  panel.innerHTML = `<div class="radar-heading"><div><p class="eyebrow">СОХРАНЁННЫЙ ПОИСК</p><h2>Радар Cayenne V8</h2><p>AutoScout24 · каждые 6 часов · уведомления только здесь</p></div><span class="radar-state ${radar.status === 'error' ? 'error' : ''}">${radar.status === 'ok' ? 'Последняя проверка успешна' : radar.status === 'error' ? 'Источник не удалось проверить' : 'Ожидает первой проверки'}</span></div><div class="radar-actions"><button type="button" data-radar-filter="new"><strong>${newCount}</strong><span>Новых за 7 дней</span></button><button type="button" data-radar-filter="price_drop"><strong>${dropCount}</strong><span>Снижений цены · 7 дней</span></button><div><span>Последняя успешная проверка</span><strong>${escapeHTML(dateTime(radar.last_success))}</strong><small>Последняя попытка: ${escapeHTML(dateTime(radar.last_attempt))}</small></div></div>${radar.status === 'error' ? `<p class="radar-warning">${escapeHTML(radar.message)} Сетевая ошибка не считается исчезновением автомобилей.</p>` : ''}<details class="radar-log"><summary>Лента изменений <span>${radar.events.length}</span></summary>${events.length ? events.map(event => `<div class="radar-event"><div><span>${escapeHTML(labels[event.type] ?? event.type)} · ${escapeHTML(dateTime(event.at))}</span><button type="button" data-open="${escapeHTML(event.listing_id)}">${escapeHTML(event.title)}</button>${event.old_price != null ? `<small>${money(event.old_price)} → ${money(event.price)}</small>` : event.price != null ? `<small>${money(event.price)}</small>` : ''}${event.type === 'new' && event.possible_duplicate ? '<small>Есть возможный дубль — это может быть повторное объявление.</small>' : ''}</div></div>`).join('') : '<p>Новых событий пока нет. Исходная подборка сохранена как база и не объявляется новой.</p>'}<p class="hint">Показаны последние 15 событий, в журнале хранятся последние 300. «Не найдено» — после двух успешных проверок подряд, а не подтверждение продажи.</p></details><details class="radar-search"><summary>Условия поиска и ограничения</summary><p>${escapeHTML(radar.saved_search.description)}</p><p>Время первого обнаружения не равно дате публикации продавцом. Расписание GitHub может задерживаться и не гарантирует точный час. Объявления mobile.de остаются исходным снимком и автоматически не проверяются.</p><a href="${escapeHTML(radar.search_url)}" target="_blank" rel="noopener noreferrer">Поиск AutoScout24 ↗</a></details>`;
+}
+
+function priceHistoryHTML(car) {
+  const track = tracking(car);
+  if (!track) return '';
+  const history = [...track.price_history].reverse().slice(0, 30);
+  return `<section class="detail-section price-history"><h3>Наблюдение и история цены</h3><p>${track.status === 'snapshot' ? 'mobile.de: сохранённый снимок, автоматическое обновление не подключено.' : track.status === 'not_found' ? 'Не найдено в двух полных проверках поиска подряд. Это не означает, что автомобиль продан.' : 'AutoScout24: объявление отслеживается.'}</p><p>Впервые замечено: ${escapeHTML(dateTime(track.first_seen))} · Последний раз найдено: ${escapeHTML(dateTime(track.last_seen))}</p><table><thead><tr><th>Зафиксировано</th><th>Цена</th></tr></thead><tbody>${history.map(item => `<tr><td>${escapeHTML(dateTime(item.at))}</td><td>${money(item.price)}</td></tr>`).join('')}</tbody></table><p class="hint">Показаны последние 30 изменений. Это цены объявлений, не суммы сделок.</p></section>`;
 }
 
 const LUXURY_GROUPS = [
@@ -174,6 +224,7 @@ function invalidRange(state) {
 }
 
 function baseMatch(car, state) {
+  if (!monitorMatch(car, state)) return false;
   if (state.source && car.source !== state.source) return false;
   if (state.country && car.country !== state.country) return false;
   if (state.year && !String(car.registration ?? '').endsWith(state.year)) return false;
@@ -270,7 +321,7 @@ function imageURL(value, size = 'mo-640') {
 function cardHTML(car) {
   const image = imageURL(car.images[0]);
   const name = (car.title ?? 'Porsche Cayenne').replace(/^Porsche Cayenne\s*/i, '') || 'Cayenne';
-  return `<article class="car-card" data-car-id="${escapeHTML(car.id)}" data-luxury="${carLuxury(car).total}"><button class="car-photo" type="button" data-open="${escapeHTML(car.id)}" aria-label="Подробнее: ${escapeHTML(car.title)}"><span class="photo-placeholder">Cayenne</span>${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(car.title)}" loading="lazy" decoding="async">` : ''}<span class="source-tag">${escapeHTML(car.source)}</span>${car.images.length ? `<span class="photo-count">${car.images.length} фото</span>` : ''}</button><div class="car-info"><div class="car-topline"><span class="mini-label">PORSCHE CAYENNE</span>${car.repaired ? '<span class="badge danger">После ДТП</span>' : ''}${car.status === 'needs_check' ? '<span class="badge warn">Проверить V8</span>' : ''}${car.duplicate_group ? `<span class="badge">Дубль? ${escapeHTML(car.duplicate_group)}</span>` : ''}</div><button class="car-title" type="button" data-open="${escapeHTML(car.id)}">${escapeHTML(name)}</button><button type="button" class="luxury-badge" data-open="${escapeHTML(car.id)}" title="Индекс дорогого оснащения, не первоначальная цена">Жирность · ${scoreNumber(carLuxury(car).total)} баллов</button><div class="car-price">${money(car.price)}</div><div class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто${car.vat ? ` · НДС ${escapeHTML(car.vat)}%` : ''}` : 'Нетто-цена не указана'}</div><div class="car-facts"><span>${escapeHTML(car.registration ?? '—')}</span><span>${number(car.mileage)} км</span><span>${number(car.hp)} л.с.</span></div><div class="car-options">${optionBadges(car)}</div><div class="car-location" title="${escapeHTML(car.seller)}">${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</div><div class="car-bottom"><a href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">На ${escapeHTML(car.source)} ↗</a><button type="button" data-open="${escapeHTML(car.id)}">Подробнее →</button></div></div></article>`;
+  return `<article class="car-card" data-car-id="${escapeHTML(car.id)}" data-luxury="${carLuxury(car).total}"><button class="car-photo" type="button" data-open="${escapeHTML(car.id)}" aria-label="Подробнее: ${escapeHTML(car.title)}"><span class="photo-placeholder">Cayenne</span>${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(car.title)}" loading="lazy" decoding="async">` : ''}<span class="source-tag">${escapeHTML(car.source)}</span>${car.images.length ? `<span class="photo-count">${car.images.length} фото</span>` : ''}</button><div class="car-info"><div class="car-topline"><span class="mini-label">PORSCHE CAYENNE</span>${monitorBadges(car)}${car.repaired ? '<span class="badge danger">После ДТП</span>' : ''}${car.status === 'needs_check' ? '<span class="badge warn">Проверить V8</span>' : ''}${car.duplicate_group ? `<span class="badge">Дубль? ${escapeHTML(car.duplicate_group)}</span>` : ''}</div><button class="car-title" type="button" data-open="${escapeHTML(car.id)}">${escapeHTML(name)}</button><button type="button" class="luxury-badge" data-open="${escapeHTML(car.id)}" title="Индекс дорогого оснащения, не первоначальная цена">Жирность · ${scoreNumber(carLuxury(car).total)} баллов</button><div class="car-price">${money(car.price)}</div><div class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто${car.vat ? ` · НДС ${escapeHTML(car.vat)}%` : ''}` : 'Нетто-цена не указана'}</div><div class="car-facts"><span>${escapeHTML(car.registration ?? '—')}</span><span>${number(car.mileage)} км</span><span>${number(car.hp)} л.с.</span></div><div class="car-options">${optionBadges(car)}</div><div class="car-location" title="${escapeHTML(car.seller)}">${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</div><div class="car-bottom"><a href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">На ${escapeHTML(car.source)} ↗</a><button type="button" data-open="${escapeHTML(car.id)}">Подробнее →</button></div></div></article>`;
 }
 
 function imageFallbacks(container) {
@@ -345,7 +396,7 @@ function showCar(id) {
   lastFocused = document.activeElement;
   const specs = [['Регистрация', car.registration], ['Пробег', `${number(car.mileage)} км`], ['Мощность', `${number(car.kw)} кВт / ${number(car.hp)} л.с.`], ['Двигатель', `${number(car.displacement)} см³ · ${number(car.cylinders)} цилиндров`], ['Владельцев', car.owners], ['Цвет', car.color], ['Салон', car.interior], ['Страна', countries[car.country] ?? car.country], ['Город', car.city], ['ДТП (по полям)', car.accident]];
   const duplicates = car.duplicate_group ? cars.filter(other => other.duplicate_group === car.duplicate_group && other.id !== car.id) : [];
-  $('#detail-content').innerHTML = `<div class="detail-body"><div class="detail-head"><div><span class="detail-source">${escapeHTML(car.source)} · ${escapeHTML(car.id)}</span><h2 id="detail-title">${escapeHTML(car.title)}</h2><p class="detail-intro">${escapeHTML(car.seller ?? 'Продавец не указан')}<br>${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</p></div><div><div class="car-price">${money(car.price)}</div><p class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто` : 'Нетто-цена не указана'}</p><a class="button primary" href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">Открыть объявление ↗</a></div></div>${car.repaired ? '<p class="warn-note">Продавец указал отремонтированные последствия ДТП. Фильтр сайта «без повреждений» не исключает такие автомобили.</p>' : ''}${car.status === 'needs_check' ? `<p class="warn-note">${escapeHTML(car.engine_check)}. Это объявление оставлено для ручной проверки.</p>` : ''}${car.conflicts.length ? `<p class="warn-note">Есть противоречивые упоминания опций: ${escapeHTML(car.conflicts.map(key => optionMap.get(key).label).join(', '))}. Уточни у продавца.</p>` : ''}<div class="detail-gallery"><div><div class="gallery-main" id="gallery-main"></div><div class="gallery-thumbs">${car.images.map((image, index) => `<button type="button" data-image="${index}" aria-label="Фото ${index + 1}" class="${index === 0 ? 'active' : ''}"><img src="${escapeHTML(imageURL(image, 'mo-160'))}" alt="Фото ${index + 1}" loading="lazy"></button>`).join('')}</div></div><dl class="detail-specs">${specs.map(([label, value]) => `<dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value ?? 'не указано')}</dd>`).join('')}</dl></div>${duplicates.length ? `<section class="detail-section"><h3>Возможные дубли: сравни цены</h3><p>Совпали регистрация, пробег и мощность. Это не подтверждение совпадения автомобиля по VIN.</p><div class="duplicate-list">${duplicates.map(other => `<div class="duplicate-row"><div><strong>${money(other.price)} · ${escapeHTML(other.source)}</strong>${escapeHTML(other.title)}<br>${escapeHTML(other.seller ?? '')}</div><a href="${escapeHTML(other.url)}" target="_blank" rel="noopener noreferrer">Открыть ↗</a></div>`).join('')}</div></section>` : ''}${richnessHTML(car)}${equipmentSections(car)}<section class="detail-section"><h3>Описание продавца · оригинал</h3><pre class="original-text">${escapeHTML(car.description || 'Описание не заполнено')}</pre></section><details class="detail-section original-source"><summary>Исходный список оборудования <span>${car.equipment.length} пунктов</span></summary><div class="original-equipment">${car.equipment.length ? car.equipment.map(value => `<span class="option-pill">${escapeHTML(value)}</span>`).join('') : '<p>Отдельный список не заполнен продавцом.</p>'}</div></details><p class="detail-footnote">Снимок: ${escapeHTML(new Date(car.fetched_at).toLocaleString('ru-RU'))}. Цена и наличие могли измениться. Внешние фотографии загружаются с площадок объявлений.</p></div>`;
+  $('#detail-content').innerHTML = `<div class="detail-body"><div class="detail-head"><div><span class="detail-source">${escapeHTML(car.source)} · ${escapeHTML(car.id)}</span><h2 id="detail-title">${escapeHTML(car.title)}</h2><p class="detail-intro">${escapeHTML(car.seller ?? 'Продавец не указан')}<br>${escapeHTML(countries[car.country] ?? car.country)} · ${escapeHTML(car.city)}</p></div><div><div class="car-price">${money(car.price)}</div><p class="car-net">${car.net_price != null ? `${money(car.net_price)} нетто` : 'Нетто-цена не указана'}</p><a class="button primary" href="${escapeHTML(car.url)}" target="_blank" rel="noopener noreferrer">Открыть объявление ↗</a></div></div>${car.repaired ? '<p class="warn-note">Продавец указал отремонтированные последствия ДТП. Фильтр сайта «без повреждений» не исключает такие автомобили.</p>' : ''}${car.status === 'needs_check' ? `<p class="warn-note">${escapeHTML(car.engine_check)}. Это объявление оставлено для ручной проверки.</p>` : ''}${car.conflicts.length ? `<p class="warn-note">Есть противоречивые упоминания опций: ${escapeHTML(car.conflicts.map(key => optionMap.get(key).label).join(', '))}. Уточни у продавца.</p>` : ''}<div class="detail-gallery"><div><div class="gallery-main" id="gallery-main"></div><div class="gallery-thumbs">${car.images.map((image, index) => `<button type="button" data-image="${index}" aria-label="Фото ${index + 1}" class="${index === 0 ? 'active' : ''}"><img src="${escapeHTML(imageURL(image, 'mo-160'))}" alt="Фото ${index + 1}" loading="lazy"></button>`).join('')}</div></div><dl class="detail-specs">${specs.map(([label, value]) => `<dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value ?? 'не указано')}</dd>`).join('')}</dl></div>${duplicates.length ? `<section class="detail-section"><h3>Возможные дубли: сравни цены</h3><p>Совпали регистрация, пробег и мощность. Это не подтверждение совпадения автомобиля по VIN.</p><div class="duplicate-list">${duplicates.map(other => `<div class="duplicate-row"><div><strong>${money(other.price)} · ${escapeHTML(other.source)}</strong>${escapeHTML(other.title)}<br>${escapeHTML(other.seller ?? '')}</div><a href="${escapeHTML(other.url)}" target="_blank" rel="noopener noreferrer">Открыть ↗</a></div>`).join('')}</div></section>` : ''}${priceHistoryHTML(car)}${richnessHTML(car)}${equipmentSections(car)}<section class="detail-section"><h3>Описание продавца · оригинал</h3><pre class="original-text">${escapeHTML(car.description || 'Описание не заполнено')}</pre></section><details class="detail-section original-source"><summary>Исходный список оборудования <span>${car.equipment.length} пунктов</span></summary><div class="original-equipment">${car.equipment.length ? car.equipment.map(value => `<span class="option-pill">${escapeHTML(value)}</span>`).join('') : '<p>Отдельный список не заполнен продавцом.</p>'}</div></details><p class="detail-footnote">Снимок: ${escapeHTML(new Date(car.fetched_at).toLocaleString('ru-RU'))}. Цена и наличие могли измениться. Внешние фотографии загружаются с площадок объявлений.</p></div>`;
   renderGallery();
   imageFallbacks($('#detail-content'));
   const dialog = $('#detail-dialog');
@@ -393,6 +444,8 @@ function bindEvents() {
   $('#option-search').addEventListener('input', renderOptions);
   $('#option-list').addEventListener('change', event => { if (event.target.matches('input[type="checkbox"]')) toggleOption(event.target.value); });
   document.addEventListener('click', event => {
+    const updateFilter = event.target.closest('[data-radar-filter]');
+    if (updateFilter) { $('#updates').value = updateFilter.dataset.radarFilter; apply(); $('#results').scrollIntoView({block: 'start'}); return; }
     const help = event.target.closest('[data-help]');
     if (help) { showOption(help.dataset.help); return; }
     const use = event.target.closest('[data-use-option]');
@@ -441,9 +494,15 @@ function bindEvents() {
 
 async function init() {
   try {
-    const response = await fetch('data.json');
+    const response = await fetch('data.json', {cache: 'no-cache'});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     dataset = await response.json();
+    try {
+      const radarResponse = await fetch('radar.json', {cache: 'no-cache'});
+      if (!radarResponse.ok) throw new Error('Radar unavailable');
+      const value = await radarResponse.json();
+      radar = value.schema === 1 && value.listings && Array.isArray(value.events) ? value : null;
+    } catch { radar = null; }
     if (dataset.schema !== 1 || !Array.isArray(dataset.cars) || !Array.isArray(dataset.catalogue)) throw new Error('Неверный формат данных');
     catalogue = dataset.catalogue.map(item => ({...item, searchText: fold([item.label, ...item.aliases, item.id === 'air_suspension' ? 'пневма пневмо' : ''].join(' '))})).sort((a, b) => a.label.localeCompare(b.label, 'ru'));
     optionMap = new Map(catalogue.map(item => [item.id, item]));
@@ -453,7 +512,8 @@ async function init() {
     carMap = new Map(cars.map(car => [car.id, car]));
     $('#total').textContent = cars.length;
     $('#option-total').textContent = catalogue.length;
-    $('#snapshot').textContent = `Снимок от ${new Date(dataset.snapshot).toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})} · не обновляется автоматически`;
+    $('#snapshot').textContent = `AutoScout24: ${radar?.last_success ? dateTime(radar.last_success) : 'ожидает проверки'} · mobile.de: сохранённый снимок`;
+    renderRadar();
     $('#normalization-note').textContent = `${dataset.counts.raw_labels} исходных названий сведены к ${dataset.counts.canonical_list_options} опциям в списках. С учётом дополнительных характеристик и упоминаний в описаниях — ${catalogue.length} пунктов каталога.`;
     $('#country').innerHTML += Array.from(new Set(cars.map(car => car.country))).sort((a, b) => (countries[a] ?? a).localeCompare(countries[b] ?? b, 'ru')).map(code => `<option value="${escapeHTML(code)}">${escapeHTML(countries[code] ?? code)}</option>`).join('');
     const quick = ['air_suspension', 'rear_steering', 'pdcc', 'pasm', 'sport_chrono', 'bose', 'burmester', 'hud', 'camera_360', 'soft_close', 'seat_vent', 'panorama'];
