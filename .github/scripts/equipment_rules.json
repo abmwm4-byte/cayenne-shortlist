@@ -657,7 +657,8 @@
       "label": "Электрорегулировка задних сидений",
       "category": "seats",
       "aliases": [
-        "Electric backseat adjustment"
+        "Electric backseat adjustment",
+        "Elektr. Sitzeinstellung, hinten"
       ],
       "description": "Электрическая регулировка задних сидений. Редкая формулировка требует проверки конкретного исполнения.",
       "finder_name": null,
@@ -1816,6 +1817,17 @@
       "finder_name": null,
       "reference_url": null
     },
+    "trailer_removable": {
+      "id": "trailer_removable",
+      "label": "Съёмный фаркоп",
+      "category": "exterior",
+      "aliases": [
+        "Anhängerkupplung abnehmbar"
+      ],
+      "description": "Съёмное буксировочное устройство по формулировке объявления. Не означает поворотный механизм или электрический привод.",
+      "finder_name": null,
+      "reference_url": null
+    },
     "trailer_pivot": {
       "id": "trailer_pivot",
       "label": "Поворотный фаркоп",
@@ -2085,6 +2097,17 @@
         "Wind deflector"
       ],
       "description": "Ветрозащитный экран указан в исходнике. Назначение и применимость к данному Cayenne следует уточнить.",
+      "finder_name": null,
+      "reference_url": null
+    },
+    "folding_roof": {
+      "id": "folding_roof",
+      "label": "Складная крыша (проверить)",
+      "category": "other",
+      "aliases": [
+        "Faltdach"
+      ],
+      "description": "Продавец отметил складную крышу. Это нетипичный для Cayenne пункт классификатора; он не подтверждает панорамную крышу или люк и требует уточнения.",
       "finder_name": null,
       "reference_url": null
     },
@@ -2365,6 +2388,9 @@
     ],
     "rear_vent": [
       "seat_vent"
+    ],
+    "trailer_removable": [
+      "trailer_hitch"
     ]
   },
   "categories": {
